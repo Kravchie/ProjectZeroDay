@@ -41,10 +41,10 @@ public class Menu {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
         batch.draw(img, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        playButton.update(batch, 0, 0);
-        rulesButton.update(batch, 0, 0);
-        settingsButton.update(batch, 0, 0);
-        quitButton.update(batch, 0, 0);
+        playButton.update(batch);
+        rulesButton.update(batch);
+        settingsButton.update(batch);
+        quitButton.update(batch);
         batch.end();
     }
 }

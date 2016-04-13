@@ -1,5 +1,6 @@
 package com.crazysquirrelsofdestruction.zeroday.view.components;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -14,18 +15,15 @@ public class SimpleButton {
         skin.setSize(width, height);
     }
 
-    public void update (SpriteBatch batch, float input_x, float input_y) {
-        checkIfClicked(input_x, input_y);
+    public void update (SpriteBatch batch) {
         skin.draw(batch); // draw the button
-    }
 
-    private void checkIfClicked (float ix, float iy) {
-        if (ix > skin.getX() && ix < skin.getX() + skin.getWidth()) {
-            if (iy > skin.getY() && iy < skin.getY() + skin.getHeight()) {
-                // the button was clicked, perform an action
-                System.out.println("Button clicked !");
+        if(Gdx.input.isTouched()) {
+            if (Gdx.input.getX() > skin.getX() && Gdx.input.getX() < skin.getX() + skin.getWidth()) {
+                if (Gdx.input.getY() > skin.getY() && Gdx.input.getY() < Gdx.input.getY() + skin.getHeight()) {
+                    System.out.println("Button clicked !");
+                }
             }
         }
     }
-
 }
