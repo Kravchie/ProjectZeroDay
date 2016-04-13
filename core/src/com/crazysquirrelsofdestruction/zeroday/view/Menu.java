@@ -30,10 +30,10 @@ public class Menu {
         playImage = new Texture("play_btn.png");
         quitImage = new Texture("quit_btn.png");
         rulesImage = new Texture("rules_btn.png");
-        settingsButton = new SimpleButton(settingsImage,(float)(Gdx.graphics.getWidth()*0.30),(float)(Gdx.graphics.getHeight()*0.10), 561,168);
-        playButton = new SimpleButton(playImage,(float)(Gdx.graphics.getWidth()*0.30),(float)(Gdx.graphics.getHeight()*0.30), 561,168);
-        quitButton = new SimpleButton(quitImage,(float)(Gdx.graphics.getWidth()*0.30),(float)(Gdx.graphics.getHeight()*0.50), 561,168);
-        rulesButton = new SimpleButton(rulesImage,(float)(Gdx.graphics.getWidth()*0.30),(float)(Gdx.graphics.getHeight()*0.70), 561,168);
+        quitButton = new SimpleButton(quitImage,(float)(Gdx.graphics.getWidth()*0.25),(float)(Gdx.graphics.getHeight()*0.20), 561,168);
+        settingsButton = new SimpleButton(settingsImage,(float)(Gdx.graphics.getWidth()*0.25),(float)(Gdx.graphics.getHeight()*0.35), 561,168);
+        rulesButton = new SimpleButton(rulesImage,(float)(Gdx.graphics.getWidth()*0.25),(float)(Gdx.graphics.getHeight()*0.50), 561,168);
+        playButton = new SimpleButton(playImage,(float)(Gdx.graphics.getWidth()*0.25),(float)(Gdx.graphics.getHeight()*0.65), 561,168);
     }
 
     public void render () {
@@ -41,9 +41,9 @@ public class Menu {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
         batch.draw(img, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        settingsButton.update(batch, 0, 0);
-        rulesButton.update(batch, 0, 0);
         playButton.update(batch, 0, 0);
+        rulesButton.update(batch, 0, 0);
+        settingsButton.update(batch, 0, 0);
         quitButton.update(batch, 0, 0);
         batch.end();
     }
