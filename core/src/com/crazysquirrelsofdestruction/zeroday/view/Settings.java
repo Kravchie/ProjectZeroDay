@@ -10,6 +10,7 @@ import com.crazysquirrelsofdestruction.zeroday.view.components.SimpleButton;
  * Created by Klaudia on 2016-04-12.
  */
 public class Settings {
+<<<<<<< HEAD
     SpriteBatch batch;
     Texture img;
     Texture buttonImage;
@@ -30,4 +31,8 @@ public class Settings {
         settingsButton.update(batch,0,0);
         batch.end();
     }
+=======
+
+
+>>>>>>> 98d13fc25c03a3ade263e9b2c5dbdc5c8f31734e
 }
