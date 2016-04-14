@@ -1,18 +1,22 @@
 package com.crazysquirrelsofdestruction.zeroday.view;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.crazysquirrelsofdestruction.zeroday.ZeroDayGame;
 import com.crazysquirrelsofdestruction.zeroday.view.components.SimpleButton;
 
 
 /**
  * Created by Klaudia on 2016-04-12.
  */
-public class Menu {
+public class Menu implements Screen {
 
-    SpriteBatch batch;
+    final ZeroDayGame game;
+    OrthographicCamera camera;
+
     Texture img;
     Texture playImage;
     Texture quitImage;
@@ -23,28 +27,68 @@ public class Menu {
     SimpleButton quitButton;
     SimpleButton playButton;
 
-    public Menu() {
-        batch = new SpriteBatch();
+    @Override
+    public void show() {
+
+    }
+
+    @Override
+    public void render(float delta) {
+        Gdx.gl.glClearColor(0, 0, 0.2f, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        camera.update();
+        game.batch.setProjectionMatrix(camera.combined);
+
+        game.batch.begin();
+        game.batch.draw(img, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        playButton.update(game.batch, this.game, this);
+        rulesButton.update(game.batch, this.game, this);
+        settingsButton.update(game.batch, this.game, this);
+        quitButton.update(game.batch, this.game, this);
+        game.batch.end();
+    }
+
+    @Override
+    public void resize(int width, int height) {
+
+    }
+
+    @Override
+    public void pause() {
+
+    }
+
+    @Override
+    public void resume() {
+
+    }
+
+    @Override
+    public void hide() {
+
+    }
+
+    @Override
+    public void dispose() {
+
+    }
+
+
+    public Menu(final ZeroDayGame game) {
+        this.game = game;
+
+        camera = new OrthographicCamera();
+        camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+
         img = new Texture("background_and_logo.png");
         settingsImage = new Texture("settings_btn.png");
         playImage = new Texture("play_btn.png");
         quitImage = new Texture("quit_btn.png");
         rulesImage = new Texture("rules_btn.png");
-        quitButton = new SimpleButton(quitImage,(float)(Gdx.graphics.getWidth()*0.25),(float)(Gdx.graphics.getHeight()*0.20), 561,168);
-        settingsButton = new SimpleButton(settingsImage,(float)(Gdx.graphics.getWidth()*0.25),(float)(Gdx.graphics.getHeight()*0.35), 561,168);
-        rulesButton = new SimpleButton(rulesImage,(float)(Gdx.graphics.getWidth()*0.25),(float)(Gdx.graphics.getHeight()*0.50), 561,168);
-        playButton = new SimpleButton(playImage,(float)(Gdx.graphics.getWidth()*0.25),(float)(Gdx.graphics.getHeight()*0.65), 561,168);
-    }
-
-    public void render () {
-        Gdx.gl.glClearColor(1, 0, 0, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        batch.begin();
-        batch.draw(img, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        playButton.update(batch);
-        rulesButton.update(batch);
-        settingsButton.update(batch);
-        quitButton.update(batch);
-        batch.end();
+        quitButton = new SimpleButton(quitImage,(float)(Gdx.graphics.getWidth()*0.25),(float)(Gdx.graphics.getHeight()*0.20), 561,168, 1);
+        settingsButton = new SimpleButton(settingsImage,(float)(Gdx.graphics.getWidth()*0.25),(float)(Gdx.graphics.getHeight()*0.35), 561,168, 1);
+        rulesButton = new SimpleButton(rulesImage,(float)(Gdx.graphics.getWidth()*0.25),(float)(Gdx.graphics.getHeight()*0.50), 561,168, 1);
+        playButton = new SimpleButton(playImage,(float)(Gdx.graphics.getWidth()*0.25),(float)(Gdx.graphics.getHeight()*0.65), 561,168, 1);
     }
 }
