@@ -9,6 +9,7 @@ import com.crazysquirrelsofdestruction.zeroday.ZeroDayGame;
 import com.crazysquirrelsofdestruction.zeroday.view.components.SimpleButton;
 
 
+
 /**
  * Created by Klaudia on 2016-04-12.
  */
@@ -88,7 +89,7 @@ public class Menu implements Screen {
         rulesImage = new Texture("rules_btn.png");
         quitButton = new SimpleButton(quitImage,(float)(Gdx.graphics.getWidth()*0.25),(float)(Gdx.graphics.getHeight()*0.20), 561,168, 1);
         settingsButton = new SimpleButton(settingsImage,(float)(Gdx.graphics.getWidth()*0.25),(float)(Gdx.graphics.getHeight()*0.35), 561,168, 1);
-        rulesButton = new SimpleButton(rulesImage,(float)(Gdx.graphics.getWidth()*0.25),(float)(Gdx.graphics.getHeight()*0.50), 561,168, 1);
-        playButton = new SimpleButton(playImage,(float)(Gdx.graphics.getWidth()*0.25),(float)(Gdx.graphics.getHeight()*0.65), 561,168, 1);
+        rulesButton = new SimpleButton(rulesImage,(float)(Gdx.graphics.getWidth()*0.25),(float)(Gdx.graphics.getHeight()*0.50), 561,168,3);
+        playButton = new SimpleButton(playImage,(float)(Gdx.graphics.getWidth()*0.25),(float)(Gdx.graphics.getHeight()*0.65), 561,168, 4);
     }
 }

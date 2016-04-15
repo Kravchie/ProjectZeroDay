@@ -8,6 +8,7 @@ import com.crazysquirrelsofdestruction.zeroday.ZeroDayGame;
 import com.crazysquirrelsofdestruction.zeroday.view.Menu;
 import com.crazysquirrelsofdestruction.zeroday.view.Rules;
 import com.crazysquirrelsofdestruction.zeroday.view.Settings;
+import com.crazysquirrelsofdestruction.zeroday.Controllers.NetController;
 
 public class SimpleButton {
 
@@ -30,6 +31,7 @@ public class SimpleButton {
                     switch(this.type){
                         case 1 : {
                             game.setScreen(new Settings(game));
+                            System.out.println("You Dont wanna play");
                             break;
                         }
                         case 2 : {
@@ -37,11 +39,14 @@ public class SimpleButton {
                             break;
                         }
                         case 3 : {
-                            game.setScreen(new Settings(game));
+                            game.setScreen(new Rules(game));
                             break;
                         }
                         case 4 : {
                             game.setScreen(new Settings(game));
+                            NetController startCon = new NetController();
+                            System.out.println("You want to play");
+                            startCon.connect();
                             break;
                         }
                     }
