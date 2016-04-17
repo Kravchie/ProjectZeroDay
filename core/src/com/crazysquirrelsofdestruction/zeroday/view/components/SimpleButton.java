@@ -26,29 +26,30 @@ public class SimpleButton {
         skin.draw(batch); // draw the button
 
         if(Gdx.input.isTouched()) {
-            if (Gdx.input.getX() > skin.getX() && Gdx.input.getX() < skin.getX() + skin.getWidth()) {
-                if (Gdx.input.getY() > skin.getY() && Gdx.input.getY() < Gdx.input.getY() + skin.getHeight()) {
+            if (Gdx.input.getX() > skin.getX() && Gdx.input.getX() < (skin.getX() + skin.getWidth())) {
+                if (Gdx.input.getY() > skin.getY() && Gdx.input.getY() < (skin.getY() + skin.getHeight())) {
                     switch(this.type){
-                        case 1 : {
-                            game.setScreen(new Settings(game));
-                            System.out.println("You Dont wanna play");
-                            break;
-                        }
-                        case 2 : {
-                            game.setScreen(new Settings(game));
-                            break;
-                        }
-                        case 3 : {
-                            game.setScreen(new Rules(game));
-                            break;
-                        }
-                        case 4 : {
+                        case 1 :
+                            System.out.println("Play button clicked");
                             game.setScreen(new Settings(game));
                             NetController startCon = new NetController();
-                            System.out.println("You want to play");
                             startCon.connect();
                             break;
-                        }
+
+                        case 2 :
+                            System.out.println("Settings button clicked");
+                            game.setScreen(new Settings(game));
+                            break;
+
+                        case 3 :
+                            System.out.println("Rules button clicked");
+                            game.setScreen(new Rules(game));
+                            break;
+
+                        case 4 :
+                            System.out.println("Quit button clicked");
+                            break;
+
                     }
                     menu.dispose();
                 }
