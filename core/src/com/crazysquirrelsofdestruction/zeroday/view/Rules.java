@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.crazysquirrelsofdestruction.zeroday.ZeroDayGame;
 
 /**
@@ -22,7 +24,6 @@ public class Rules implements Screen {
     private String rules;
     private int width;
     private int height;
-
     Texture img;
 
     @Override
@@ -83,7 +84,7 @@ public class Rules implements Screen {
         file = Gdx.files.internal("rules.txt");
         font = new BitmapFont();
         font.setColor(Color.WHITE);
-        font.getData().setScale((float)2.5);
+        font.getData().setScale(2);
         rules = file.readString();
 
         img = new Texture("background_and_logo.png");
