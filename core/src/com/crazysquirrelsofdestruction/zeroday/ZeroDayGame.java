@@ -5,11 +5,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.crazysquirrelsofdestruction.zeroday.model.Settings;
 import com.crazysquirrelsofdestruction.zeroday.view.Menu;
 
 public class ZeroDayGame extends Game implements ApplicationListener, InputProcessor {
 
 	public SpriteBatch batch;
+	public Settings settings;
 
 	@Override
 	public boolean keyDown(int keycode) {
@@ -57,6 +59,7 @@ public class ZeroDayGame extends Game implements ApplicationListener, InputProce
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
+		settings = new Settings();
 		Gdx.input.setInputProcessor(this);
 		Gdx.input.setCatchBackKey(true);
 		this.setScreen(new Menu(this));

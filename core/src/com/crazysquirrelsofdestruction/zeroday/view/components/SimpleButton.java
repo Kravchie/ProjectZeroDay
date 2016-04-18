@@ -27,7 +27,7 @@ public class SimpleButton {
 
         if(Gdx.input.isTouched()) {
             if (Gdx.input.getX() > skin.getX() && Gdx.input.getX() < (skin.getX() + skin.getWidth())) {
-                if (Gdx.input.getY() > skin.getY() && Gdx.input.getY() < (skin.getY() + skin.getHeight())) {
+                if ((Gdx.graphics.getHeight()-Gdx.input.getY()) > skin.getY() && (Gdx.graphics.getHeight()-Gdx.input.getY()) < (skin.getY() + skin.getHeight())) {
                     switch(this.type){
                         case 1 :
                             System.out.println("Play button clicked");

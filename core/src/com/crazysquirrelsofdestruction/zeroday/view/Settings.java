@@ -2,10 +2,13 @@ package com.crazysquirrelsofdestruction.zeroday.view;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.crazysquirrelsofdestruction.zeroday.ZeroDayGame;
+import com.crazysquirrelsofdestruction.zeroday.view.components.ToggleButton;
 
 /**
  * Created by Klaudia on 2016-04-12.
@@ -14,6 +17,8 @@ public class Settings implements Screen {
 
     final ZeroDayGame game;
     OrthographicCamera camera;
+    ToggleButton toggleButton;
+    private BitmapFont font;
 
     Texture img;
 
@@ -33,6 +38,8 @@ public class Settings implements Screen {
 
         game.batch.begin();
         game.batch.draw(img, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        toggleButton.update(game.batch, this.game);
+        font.draw(game.batch, "Music = " + game.settings.getMusic().toString(), (float) (Gdx.graphics.getWidth() * 0.08), (float) (Gdx.graphics.getHeight() * 0.90), (float) (Gdx.graphics.getWidth() * 0.85), -1, true);
         game.batch.end();
 
     }
@@ -59,7 +66,7 @@ public class Settings implements Screen {
 
     @Override
     public void dispose() {
-
+        font.dispose();
     }
 
     public Settings(final ZeroDayGame game) {
@@ -68,7 +75,13 @@ public class Settings implements Screen {
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
-        img = new Texture("player2.png");
+        toggleButton = new ToggleButton((float)(Gdx.graphics.getWidth()*0.3), (float)(Gdx.graphics.getHeight()*0.8), 153, 93);
+
+        font = new BitmapFont();
+        font.setColor(Color.WHITE);
+        font.getData().setScale(4);
+
+        img = new Texture("background_and_logo.png");
     }
 
 }
