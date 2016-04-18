@@ -25,7 +25,7 @@ public class SimpleButton {
     public void update (SpriteBatch batch, final ZeroDayGame game, Menu menu) {
         skin.draw(batch); // draw the button
 
-        if(Gdx.input.isTouched()) {
+        if(Gdx.input.justTouched()) {
             if (Gdx.input.getX() > skin.getX() && Gdx.input.getX() < (skin.getX() + skin.getWidth())) {
                 if ((Gdx.graphics.getHeight()-Gdx.input.getY()) > skin.getY() && (Gdx.graphics.getHeight()-Gdx.input.getY()) < (skin.getY() + skin.getHeight())) {
                     switch(this.type){

@@ -39,7 +39,7 @@ public class Settings implements Screen {
         game.batch.begin();
         game.batch.draw(img, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         toggleButton.update(game.batch, this.game);
-        font.draw(game.batch, "Music = " + game.settings.getMusic().toString(), (float) (Gdx.graphics.getWidth() * 0.08), (float) (Gdx.graphics.getHeight() * 0.90), (float) (Gdx.graphics.getWidth() * 0.85), -1, true);
+        font.draw(game.batch, "Music", (float) (Gdx.graphics.getWidth() * 0.08), (float) (Gdx.graphics.getHeight() * 0.84), (float) (Gdx.graphics.getWidth() * 0.20), -1, true);
         game.batch.end();
 
     }
@@ -75,7 +75,7 @@ public class Settings implements Screen {
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
-        toggleButton = new ToggleButton((float)(Gdx.graphics.getWidth()*0.3), (float)(Gdx.graphics.getHeight()*0.8), 153, 93);
+        toggleButton = new ToggleButton((float)(Gdx.graphics.getWidth()*0.5), (float)(Gdx.graphics.getHeight()*0.8), 153, 93);
 
         font = new BitmapFont();
         font.setColor(Color.WHITE);

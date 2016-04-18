@@ -16,16 +16,16 @@ public class ToggleButton {
     private Sprite unchecked_skin;
     private Texture toggle_on;
     private Texture toggle_off;
-    private float xx;
-    private float yy;
-    private float hh;
-    private float ww;
+    private float x;
+    private float y;
+    private float h;
+    private float w;
 
     public ToggleButton(float x, float y, float width, float height) {
-        xx = x;
-        yy = y;
-        ww = width;
-        hh = height;
+        this.x = x;
+        this.y = y;
+        this.w = width;
+        this.h = height;
         toggle_on = new Texture("toggle_on.png");
         toggle_off = new Texture("toggle_off.png");
         checked_skin = new Sprite(toggle_on);
@@ -45,9 +45,9 @@ public class ToggleButton {
             unchecked_skin.draw(batch);
         }
 
-        if(Gdx.input.isTouched()) {
-            if (Gdx.input.getX() > xx && Gdx.input.getX() < (xx + ww)) {
-                if ((Gdx.graphics.getHeight() - Gdx.input.getY()) > yy && (Gdx.graphics.getHeight()-Gdx.input.getY()) < (yy + hh)) {
+        if(Gdx.input.justTouched()) {
+            if (Gdx.input.getX() > this.x && Gdx.input.getX() < (this.x + this.w)) {
+                if ((Gdx.graphics.getHeight() - Gdx.input.getY()) > this.y && (Gdx.graphics.getHeight()-Gdx.input.getY()) < (this.y + this.h)) {
                     if(game.settings.getMusic().equals(true)){
                         game.settings.setMusic(false);
                     }
