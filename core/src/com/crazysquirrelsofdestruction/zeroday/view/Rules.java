@@ -41,7 +41,7 @@ public class Rules implements Screen {
 
         game.batch.begin();
         game.batch.draw(img, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        font.draw(game.batch, rules, 50, (height-70), (width-100), -1, true);
+        font.draw(game.batch, rules, (float)(width*0.08), (float)(height*0.90), (float)(width*0.85), -1, true);
         game.batch.end();
 
     }
@@ -83,7 +83,7 @@ public class Rules implements Screen {
         file = Gdx.files.internal("rules.txt");
         font = new BitmapFont();
         font.setColor(Color.WHITE);
-        font.getData().setScale(2);
+        font.getData().setScale((float)2.5);
         rules = file.readString();
 
         img = new Texture("background_and_logo.png");
