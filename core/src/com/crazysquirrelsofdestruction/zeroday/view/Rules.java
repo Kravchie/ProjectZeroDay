@@ -2,9 +2,12 @@ package com.crazysquirrelsofdestruction.zeroday.view;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.crazysquirrelsofdestruction.zeroday.ZeroDayGame;
 
 /**
@@ -14,6 +17,11 @@ public class Rules implements Screen {
 
     final ZeroDayGame game;
     OrthographicCamera camera;
+    private BitmapFont font;
+    private FileHandle file;
+    private String rules;
+    private int width;
+    private int height;
 
     Texture img;
 
@@ -33,6 +41,7 @@ public class Rules implements Screen {
 
         game.batch.begin();
         game.batch.draw(img, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        font.draw(game.batch, rules, 50, (height-70), (width-100), -1, true);
         game.batch.end();
 
     }
@@ -59,7 +68,7 @@ public class Rules implements Screen {
 
     @Override
     public void dispose() {
-
+        font.dispose();
     }
 
     public Rules(final ZeroDayGame game){
@@ -68,6 +77,15 @@ public class Rules implements Screen {
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
-        img = new Texture("red.png");
+        width = Gdx.graphics.getWidth();
+        height = Gdx.graphics.getHeight();
+
+        file = Gdx.files.internal("rules.txt");
+        font = new BitmapFont();
+        font.setColor(Color.WHITE);
+        font.getData().setScale(2);
+        rules = file.readString();
+
+        img = new Texture("background_and_logo.png");
     }
 }

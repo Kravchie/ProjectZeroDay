@@ -1,1 +1,1 @@
-include 'android', 'core'
+include 'android', 'core', ':App42MultiPlayerGamingSDK', ':org.json'

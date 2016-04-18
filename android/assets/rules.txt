@@ -1,0 +1,39 @@
+Rule 1
+Zero-day is a card game. There are needed 3 or 4 players to start the game.
+
+Rule 2
+In the game's card deck there are 12 cards, only 5 types of cards, and 4 different functionalities:
+- 'Check' others player's card
+- 'Compare' card with other player's one
+- 'Discard' one of the other player's card
+- 'Protect' your card against other functionalities
+
+Rule 3
+Each type of card (character card) has some function:
+[Big Fish] ----> Who discard it, is out of the game
+[White Hat] ---> Protect
+[Black Hat] ---> Compare
+[Cracker] -----> Discard
+[Skiddie] ------> Check
+
+Rule 4
+The main aim of the game is to finish round with the card with the highest number among all players
+
+
+FLOW OF THE GAME
+
+1. The game consists of the 2-3 rounds (it depends on number of players).
+2. At the beginning of the game, each player receives one random card.
+3. In the beginning of player’s turn, he/she receives one additional card (also randomly chosen).
+4. Then the player chooses, which card he/she is going to use. When player chooses one of the cards described by one of the following functionalities - compare, check, discard, he/she needs to choose other player from the list (other player that he/she wants to use this functionality on).
+5. In the game there is a deck of 12 cards, which consists of:
+--- 1 x Big Fish card
+--- 2 x White hat card
+--- 2 x Black hat card
+--- 3 x Cracker card
+--- 4 x Skiddie card
+
+6. When whole deck is finished, it is the end of the game. Player with the card with the highest number wins.
+
+
+START A GAME AND HAVE FUN!!
