@@ -48,6 +48,7 @@ public class SimpleButton {
 
                         case 4 :
                             System.out.println("Quit button clicked");
+                            Gdx.app.exit();
                             break;
 
                     }
