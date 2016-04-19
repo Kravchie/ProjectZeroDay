@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.crazysquirrelsofdestruction.zeroday.ZeroDayGame;
+import com.crazysquirrelsofdestruction.zeroday.view.GameBoard;
 import com.crazysquirrelsofdestruction.zeroday.view.Menu;
 import com.crazysquirrelsofdestruction.zeroday.view.Rules;
 import com.crazysquirrelsofdestruction.zeroday.view.Settings;
@@ -31,9 +32,7 @@ public class SimpleButton {
                     switch(this.type){
                         case 1 :
                             System.out.println("Play button clicked");
-                            game.setScreen(new Settings(game));
-                            NetController startCon = new NetController();
-                            startCon.connect();
+                            game.setScreen(new GameBoard(game));
                             break;
 
                         case 2 :
