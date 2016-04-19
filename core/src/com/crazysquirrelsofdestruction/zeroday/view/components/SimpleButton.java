@@ -52,6 +52,7 @@ public class SimpleButton {
 
                         case 4 :
                             System.out.println("Quit button clicked");
+                            WarpController.getInstance().handleLeave();
                             Gdx.app.exit();
                             break;
 

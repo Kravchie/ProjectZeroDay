@@ -145,7 +145,7 @@ public class WarpController {
         }else if(event.getResult()==WarpResponseResultCode.RESOURCE_NOT_FOUND){// no such room found
             HashMap<String, Object> data = new HashMap<String, Object>();
             data.put("result", "");
-            warpClient.createRoom("ZeroDay", "CSOD", 2, data);//2 participants in room TO TEST
+            warpClient.createRoom("ZeroDay", "CSOD", 3, data);//2 participants in room TO TEST
             System.out.println("\nNDNIn roomCreated");
         }else{
             warpClient.disconnect();
@@ -166,9 +166,10 @@ public class WarpController {
 
     public void onGetLiveRoomInfo(String[] liveUsers){
         log("onGetLiveRoomInfo: "+ liveUsers.length);
+        System.out.println("onGetLiveRoomInfo CALLED");
         number_of_players = liveUsers.length;
         if(liveUsers!=null){
-            if(liveUsers.length==2){ //StartWith2Players
+            if(liveUsers.length==3){ //StartWith2Players
                 startGame();
             }else{
                 waitForOtherUser();
@@ -187,9 +188,11 @@ public class WarpController {
 		/*
 		 * if room id is same and username is different then start the game
 		 */
-        if(localUser.equals(userName)==false){
+        number_of_players++;
+        /*if(localUser.equals(userName)==false){
+            number_of_players++;
             startGame();
-        }
+        }*/
     }
 
     public void onSendChatDone(boolean status){
@@ -217,6 +220,7 @@ public class WarpController {
 
     public void onUserLeftRoom(String roomId, String userName){
         log("onUserLeftRoom "+userName+" in room "+roomId);
+        number_of_players--;
         if(STATE==STARTED && !localUser.equals(userName)){// Game Started and other user left the room
             warpListener.onGameFinished(ENEMY_LEFT, true);
         }

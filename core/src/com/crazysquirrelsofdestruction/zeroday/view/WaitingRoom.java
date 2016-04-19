@@ -84,7 +84,6 @@ public class WaitingRoom implements Screen, WarpListener {
 
         camera.update();
         game.batch.setProjectionMatrix(camera.combined);
-
         number_of_players = WarpController.getInstance().number_of_players;
 
         game.batch.begin();
