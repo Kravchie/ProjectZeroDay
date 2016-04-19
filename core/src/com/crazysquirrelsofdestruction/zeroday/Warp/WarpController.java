@@ -43,6 +43,9 @@ public class WarpController {
     public static final int GAME_LOOSE = 6;
     public static final int ENEMY_LEFT = 7;
 
+    //info for waiting room
+    public int number_of_players;
+
     public WarpController() {
         initAppwarp();
         warpClient.addConnectionRequestListener(new ConnectionListener(this));
@@ -50,6 +53,7 @@ public class WarpController {
         warpClient.addZoneRequestListener(new ZoneListener(this));
         warpClient.addRoomRequestListener(new RoomListener(this));
         warpClient.addNotificationListener(new NotificationListener(this));
+        number_of_players = 0;
     }
 
     public static WarpController getInstance(){
@@ -161,7 +165,8 @@ public class WarpController {
     }
 
     public void onGetLiveRoomInfo(String[] liveUsers){
-        log("onGetLiveRoomInfo: "+liveUsers.length);
+        log("onGetLiveRoomInfo: "+ liveUsers.length);
+        number_of_players = liveUsers.length;
         if(liveUsers!=null){
             if(liveUsers.length==2){ //StartWith2Players
                 startGame();
@@ -172,6 +177,10 @@ public class WarpController {
             warpClient.disconnect();
             handleError();
         }
+    }
+
+    public int getliveUsers(){
+        return number_of_players;
     }
 
     public void onUserJoinedRoom(String roomId, String userName){

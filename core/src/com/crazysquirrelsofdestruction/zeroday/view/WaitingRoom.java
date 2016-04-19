@@ -8,32 +8,67 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.crazysquirrelsofdestruction.zeroday.Controllers.GameController;
+import com.crazysquirrelsofdestruction.zeroday.Warp.WarpController;
+import com.crazysquirrelsofdestruction.zeroday.Warp.WarpListener;
 import com.crazysquirrelsofdestruction.zeroday.ZeroDayGame;
-import com.crazysquirrelsofdestruction.zeroday.view.components.ToggleButton;
 
 /**
- * Created by Klaudia on 2016-04-18.
+ * Created by Klaudia on 2016-04-19.
  */
-public class GameBoard implements Screen {
+public class WaitingRoom implements Screen, WarpListener {
+    @Override
+    public void onWaitingStarted(String message) {
+
+    }
+
+    @Override
+    public void onError(String message) {
+
+    }
+
+    @Override
+    public void onGameStarted(String message) {
+
+    }
+
+    @Override
+    public void onGameFinished(int code, boolean isRemote) {
+
+    }
+
+    @Override
+    public void onGameUpdateReceived(String message) {
+
+    }
 
     final ZeroDayGame game;
-    OrthographicCamera camera;
-
     final GameController controller;
 
+    OrthographicCamera camera;
+    private BitmapFont font;
+
+    private String text;
+    private int number_of_players;
+
     Texture img;
-    Texture table;
 
-    public GameBoard(final ZeroDayGame game, final GameController controller) {
-
+    public WaitingRoom(final ZeroDayGame game) {
         this.game = game;
-        this.controller = controller;
+        this.controller = new GameController();
+
+        number_of_players = 0;
+        text = "Waiting for other players: ";
 
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
+        font = new BitmapFont();
+        font.setColor(Color.WHITE);
+        font.getData().setScale(4);
+
         img = new Texture("background_and_logo.png");
-        table = new Texture("table.png");
+
+        WarpController.getInstance().setListener(this);
     }
 
     @Override
@@ -50,15 +85,12 @@ public class GameBoard implements Screen {
         camera.update();
         game.batch.setProjectionMatrix(camera.combined);
 
+        number_of_players = WarpController.getInstance().number_of_players;
+
         game.batch.begin();
         game.batch.draw(img, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        game.batch.draw(table, (float)(Gdx.graphics.getWidth()*0.25), (float)(Gdx.graphics.getHeight()*0.4), (float)(Gdx.graphics.getWidth()*0.4), Gdx.graphics.getHeight()/3);
+        font.draw(game.batch, text + number_of_players, (float)(Gdx.graphics.getWidth()*0.20), (float)(Gdx.graphics.getHeight()*0.50), (float)(Gdx.graphics.getWidth()*0.85), -1, true);
         game.batch.end();
-
-        //update game model
-        //draw background
-        //draw table
-        //draw players
 
     }
 
@@ -84,6 +116,6 @@ public class GameBoard implements Screen {
 
     @Override
     public void dispose() {
-
+        font.dispose();
     }
 }
