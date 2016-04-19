@@ -1,18 +1,14 @@
 package com.crazysquirrelsofdestruction.zeroday.view.components;
 
-import java.util.Random;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-
 import com.crazysquirrelsofdestruction.zeroday.ZeroDayGame;
 import com.crazysquirrelsofdestruction.zeroday.view.Menu;
 import com.crazysquirrelsofdestruction.zeroday.view.Rules;
 import com.crazysquirrelsofdestruction.zeroday.view.Settings;
 import com.crazysquirrelsofdestruction.zeroday.Controllers.NetController;
-import com.crazysquirrelsofdestruction.zeroday.Controllers.GamePlayTest;
-import com.crazysquirrelsofdestruction.zeroday.Warp.WarpController;
 
 public class SimpleButton {
 
@@ -28,42 +24,37 @@ public class SimpleButton {
 
     public void update (SpriteBatch batch, final ZeroDayGame game, Menu menu) {
         skin.draw(batch); // draw the button
-        if(Gdx.input.isTouched()) {
-            if (Gdx.input.getX() > skin.getX() && Gdx.input.getX() < skin.getX() + skin.getWidth()) {
-                if (Gdx.input.getY() > skin.getY() && Gdx.input.getY() < Gdx.input.getY() + skin.getHeight()) {
-                    switch(this.type){
-                        case 1 : {
-                            game.setScreen(new GamePlayTest(game));
-                            System.out.println("You Wanna Play");
-                            WarpController.getInstance().startApp(getRandomHexString(10));//Need to Take User's Name
-                            break;
-                        }
-                        case 2 : {
-                            game.setScreen(new Settings(game));
-                            break;
-                        }
-                        case 3 : {
-                            game.setScreen(new Settings(game));
 
+        if(Gdx.input.justTouched()) {
+            if (Gdx.input.getX() > skin.getX() && Gdx.input.getX() < (skin.getX() + skin.getWidth())) {
+                if ((Gdx.graphics.getHeight()-Gdx.input.getY()) > skin.getY() && (Gdx.graphics.getHeight()-Gdx.input.getY()) < (skin.getY() + skin.getHeight())) {
+                    switch(this.type){
+                        case 1 :
+                            System.out.println("Play button clicked");
+                            game.setScreen(new Settings(game));
+                            NetController startCon = new NetController();
+                            startCon.connect();
                             break;
-                        }
-                        case 4 : {
-                            game.setScreen(new GamePlayTest(game));
-                            System.out.println("You Dont Wanna Play");
+
+                        case 2 :
+                            System.out.println("Settings button clicked");
+                            game.setScreen(new Settings(game));
                             break;
-                        }
+
+                        case 3 :
+                            System.out.println("Rules button clicked");
+                            game.setScreen(new Rules(game));
+                            break;
+
+                        case 4 :
+                            System.out.println("Quit button clicked");
+                            Gdx.app.exit();
+                            break;
+
                     }
                     menu.dispose();
                 }
             }
         }
-    }
-    private String getRandomHexString(int numchars){
-        Random r = new Random();
-        StringBuffer sb = new StringBuffer();
-        while(sb.length() < numchars){
-            sb.append(Integer.toHexString(r.nextInt()));
-        }
-        return sb.toString().substring(0, numchars);
     }
 }

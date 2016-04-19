@@ -9,6 +9,7 @@ public class Player {
 
     private HashMap deck;
     private int points;
+    private int id;
 
     public Player(){
         deck = new HashMap();
