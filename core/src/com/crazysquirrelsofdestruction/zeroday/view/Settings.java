@@ -71,7 +71,6 @@ public class Settings implements Screen {
 
     public Settings(final ZeroDayGame game) {
         this.game = game;
-
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
@@ -80,7 +79,6 @@ public class Settings implements Screen {
         font = new BitmapFont();
         font.setColor(Color.WHITE);
         font.getData().setScale(4);
-
         img = new Texture("background_and_logo.png");
     }
 

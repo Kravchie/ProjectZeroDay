@@ -50,7 +50,8 @@ project(":android") {
         natives "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-x86"
         natives "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-x86_64"
         compile files('Libs/App42MultiPlayerGamingSDK.jar')
-    }
+           }
+
 }
 
 project(":core") {
@@ -62,6 +63,8 @@ project(":core") {
         compile "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
         compile files('Libs/App42MultiPlayerGamingSDK.jar')
         compile files('Libs/json-org.jar')
+        compile files('libs/App42_ANDROID_CAMPAIGN_SDK_3.1.jar')
+        compile files('libs/App42_ANDROID_SDK_3.8.jar')
     }
 }
 
