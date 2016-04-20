@@ -29,6 +29,8 @@ public class WaitingRoom implements Screen, WarpListener {
     @Override
     public void onGameStarted(String message) {
 
+        game.setScreen(new GameBoard(game, controller));
+
     }
 
     @Override

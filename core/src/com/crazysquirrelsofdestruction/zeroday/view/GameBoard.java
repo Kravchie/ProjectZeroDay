@@ -10,11 +10,16 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.crazysquirrelsofdestruction.zeroday.Controllers.GameController;
 import com.crazysquirrelsofdestruction.zeroday.ZeroDayGame;
 import com.crazysquirrelsofdestruction.zeroday.view.components.ToggleButton;
+import com.crazysquirrelsofdestruction.zeroday.Warp.WarpController;
+import com.crazysquirrelsofdestruction.zeroday.Warp.WarpListener;
+
+
 
 /**
  * Created by Klaudia on 2016-04-18.
  */
-public class GameBoard implements Screen {
+
+public class GameBoard implements Screen, WarpListener {
 
     final ZeroDayGame game;
     OrthographicCamera camera;
@@ -34,6 +39,7 @@ public class GameBoard implements Screen {
 
         img = new Texture("background_and_logo.png");
         table = new Texture("table.png");
+        //WarpController.getInstance().setListener(this);
     }
 
     @Override
@@ -84,6 +90,30 @@ public class GameBoard implements Screen {
 
     @Override
     public void dispose() {
+
+    }
+    @Override
+    public void onWaitingStarted(String message) {
+
+    }
+
+    @Override
+    public void onError(String message) {
+
+    }
+
+    @Override
+    public void onGameStarted(String message) {
+
+    }
+
+    @Override
+    public void onGameFinished(int code, boolean isRemote) {
+
+    }
+
+    @Override
+    public void onGameUpdateReceived(String message) {
 
     }
 }

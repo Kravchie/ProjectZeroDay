@@ -1,4 +1,4 @@
-package com.crazysquirrelsofdestruction.zeroday.Controllers;
+/*package com.crazysquirrelsofdestruction.zeroday.Controllers;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -15,11 +15,12 @@ import com.crazysquirrelsofdestruction.zeroday.Warp.WarpListener;
 import com.crazysquirrelsofdestruction.zeroday.ZeroDayGame;
 import com.crazysquirrelsofdestruction.zeroday.view.GameTable;
 import com.crazysquirrelsofdestruction.zeroday.view.Settings;
+import com.crazysquirrelsofdestruction.zeroday.view.WaitingRoom;
 
 /**
  * Created by Nadin on 4/19/2016.
- */
-public class GamePlayTest implements Screen, WarpListener {
+
+public class GamePlayTest implements  WarpListener {
     final ZeroDayGame game;
     OrthographicCamera guiCam;
     SpriteBatch batcher;
@@ -42,13 +43,14 @@ public class GamePlayTest implements Screen, WarpListener {
 
     public GamePlayTest (final ZeroDayGame game) {
         this.game = game;
-        guiCam = new OrthographicCamera(320, 480);
+       guiCam = new OrthographicCamera(320, 480);
         guiCam.position.set(320 / 2, 480 / 2, 0);
         backBounds = new Rectangle(0, 0, 64, 64);
         touchPoint = new Vector3();
         batcher = new SpriteBatch();
         xOffset = 80;
         WarpController.getInstance().setListener(this);
+
     }
 
     public void update () {
@@ -56,12 +58,12 @@ public class GamePlayTest implements Screen, WarpListener {
             guiCam.unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
             if (backBounds.contains(touchPoint.x, touchPoint.y)) {
                 System.out.print("Touch point touched");
-                game.setScreen(new Settings(game));
+                game.setScreen(new WaitingRoom(game));
                 WarpController.getInstance().handleLeave();
                 return;
             }
-        }
-    }
+
+
 
     public void draw() {
         GL20 gl = Gdx.gl;
@@ -82,12 +84,12 @@ public class GamePlayTest implements Screen, WarpListener {
         glyphLayout.setText(font, msg);
         font.draw(batcher,glyphLayout, x + glyphLayout.width / 3, y + glyphLayout.height / 3);
         y += glyphLayout.height;
-            /*
+
             for (int i = msg.length-1; i >= 0; i--) {
                 float width = Assets.font.getBounds(msg[i]).width;
                 Assets.font.draw(batcher, msg[i], 160-width/2, y);
                 y += Assets.font.getLineHeight();
-            }*/
+            }
         batcher.end();
 
     }
@@ -128,7 +130,7 @@ public class GamePlayTest implements Screen, WarpListener {
         update();
     }
 
-    @Override
+    @Override//WAITING ROOM
     public void onGameStarted (String message) {
         Gdx.app.postRunnable(new Runnable() {
             @Override
@@ -149,7 +151,7 @@ public class GamePlayTest implements Screen, WarpListener {
             this.msg = enemy_left;
         }
         update();
-        game.setScreen(this);
+        //game.setScreen();//BacktoMenu
     }
 
     @Override
@@ -162,5 +164,9 @@ public class GamePlayTest implements Screen, WarpListener {
         this.msg = waitForOtherUser;
         update();
     }
+    public void onError (String message) {
+        this.msg = errorInConnection;
 
-}
+    }
+
+}*/
