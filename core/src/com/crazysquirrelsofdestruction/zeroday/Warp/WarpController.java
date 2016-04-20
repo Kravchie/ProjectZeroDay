@@ -114,10 +114,11 @@ public class WarpController {
 
     public void onConnectDone(boolean status){
         log("onConnectDone: " + status);
-        System.out.println("\nNDNConnected");
+
         if(status){
             warpClient.initUDP();
             warpClient.joinRoomInRange(1, 1, false);//1 Participant already in room
+            System.out.println("\nNDNConnected");
         }else{
             isConnected = false;
             handleError();
@@ -165,7 +166,7 @@ public class WarpController {
     }
 
     public void onGetLiveRoomInfo(String[] liveUsers){
-        log("onGetLiveRoomInfo: "+ liveUsers.length);
+        log("onGetLiveRoomInfo: " + liveUsers.length);
         number_of_players = liveUsers.length;
         if(liveUsers!=null){
             if(liveUsers.length==2){ //StartWith2Players
@@ -186,9 +187,10 @@ public class WarpController {
     public void onUserJoinedRoom(String roomId, String userName){
 
         number_of_players++;
-        /*if(localUser.equals(userName)==false){
+
+        if(localUser.equals(userName)==false && number_of_players== 2){
             startGame();
-        }*/
+        }
     }
 
     public void onSendChatDone(boolean status){
@@ -235,13 +237,13 @@ public class WarpController {
     private void startGame(){
         STATE = STARTED;
         warpListener.onGameStarted("Start the Game");
-        System.out.print("NDNEnoughPLayers");
+        System.out.print("\nNDNEnoughPLayers");
 
     }
 
     private void waitForOtherUser(){
         STATE = WAITING;
-        System.out.print("NDNWaiting for Player");
+        System.out.print("\nNDNWaiting for Player");
         warpListener.onWaitingStarted("Waiting for other user");
     }
 

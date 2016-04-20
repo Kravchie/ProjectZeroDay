@@ -33,7 +33,7 @@ public class GameBoard implements Screen, WarpListener {
 
         this.game = game;
         this.controller = controller;
-
+        System.out.print("NDN_IN GAME BOARD");
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 

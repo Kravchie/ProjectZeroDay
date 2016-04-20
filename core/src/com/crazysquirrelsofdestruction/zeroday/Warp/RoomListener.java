@@ -20,8 +20,10 @@ public class RoomListener implements RoomRequestListener{
     public void onGetLiveRoomInfoDone(LiveRoomInfoEvent event) {
         if(event.getResult()==WarpResponseResultCode.SUCCESS){
             callBack.onGetLiveRoomInfo(event.getJoinedUsers());
+            System.out.print("\nNDNSucess Update");
         }else{
             callBack.onGetLiveRoomInfo(null);
+            System.out.print("\nNDNNo Update  "+event.getResult());
         }
     }
 

@@ -15,8 +15,8 @@ import com.crazysquirrelsofdestruction.zeroday.ZeroDayGame;
 /**
  * Created by Klaudia on 2016-04-19.
  */
-public class WaitingRoom implements Screen, WarpListener {
-    @Override
+public class WaitingRoom implements Screen {
+    /*@Override
     public void onWaitingStarted(String message) {
 
     }
@@ -41,7 +41,7 @@ public class WaitingRoom implements Screen, WarpListener {
     @Override
     public void onGameUpdateReceived(String message) {
 
-    }
+    }*/
 
     final ZeroDayGame game;
     final GameController controller;
@@ -54,9 +54,9 @@ public class WaitingRoom implements Screen, WarpListener {
 
     Texture img;
 
-    public WaitingRoom(final ZeroDayGame game) {
+    public WaitingRoom(final ZeroDayGame game, GameController controller) {
         this.game = game;
-        this.controller = new GameController();
+        this.controller = controller;
 
         number_of_players = 0;
         text = "Waiting for other players: ";
@@ -70,7 +70,7 @@ public class WaitingRoom implements Screen, WarpListener {
 
         img = new Texture("background_and_logo.png");
 
-        WarpController.getInstance().setListener(this);
+        //WarpController.getInstance().setListener(this);
     }
 
     @Override

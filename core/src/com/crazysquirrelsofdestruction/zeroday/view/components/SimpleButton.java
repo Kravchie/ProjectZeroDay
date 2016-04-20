@@ -9,8 +9,7 @@ import com.crazysquirrelsofdestruction.zeroday.ZeroDayGame;
 import com.crazysquirrelsofdestruction.zeroday.view.Menu;
 import com.crazysquirrelsofdestruction.zeroday.view.Rules;
 import com.crazysquirrelsofdestruction.zeroday.view.Settings;
-import com.crazysquirrelsofdestruction.zeroday.Controllers.NetController;
-//import com.crazysquirrelsofdestruction.zeroday.Controllers.GamePlayTest;
+import com.crazysquirrelsofdestruction.zeroday.Controllers.GameController;
 import com.crazysquirrelsofdestruction.zeroday.Warp.WarpController;
 import com.crazysquirrelsofdestruction.zeroday.view.WaitingRoom;
 
@@ -36,8 +35,8 @@ public class SimpleButton {
                         case 1 :
                             System.out.println("Play button clicked");
                             //game.setScreen(new GamePlayTest(game));
-                            WarpController.getInstance().startApp(getRandomHexString(10));//Need to Take User's Name
-                            game.setScreen(new WaitingRoom(game));
+
+                            game.onGameStarted();
                             break;
 
                         case 2 :
@@ -62,12 +61,5 @@ public class SimpleButton {
             }
         }
     }
-    private String getRandomHexString(int numchars){
-        Random r = new Random();
-        StringBuffer sb = new StringBuffer();
-        while(sb.length() < numchars){
-            sb.append(Integer.toHexString(r.nextInt()));
-        }
-        return sb.toString().substring(0, numchars);
-    }
+
 }

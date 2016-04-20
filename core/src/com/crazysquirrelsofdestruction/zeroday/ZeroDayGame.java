@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.crazysquirrelsofdestruction.zeroday.Controllers.GameController;
 import com.crazysquirrelsofdestruction.zeroday.model.Settings;
 import com.crazysquirrelsofdestruction.zeroday.view.Menu;
 
@@ -12,13 +13,18 @@ public class ZeroDayGame extends Game implements ApplicationListener, InputProce
 
 	public SpriteBatch batch;
 	public Settings settings;
-
+	public GameController gameController;
 	@Override
 	public boolean keyDown(int keycode) {
 		if(keycode == Input.Keys.BACK){
 			this.setScreen(new Menu(this));
 		}
 		return false;
+	}
+	public void onGameStarted(){
+
+		gameController = new GameController(this);
+
 	}
 
 	@Override
