@@ -22,4 +22,8 @@ public class Game {
     public void addPlayer(String uniqName, int index) {
         this.players.put(uniqName, index);
     }
+
+    public void deletePlayer(String uniqName) {
+        this.players.remove(uniqName);
+    }
 }

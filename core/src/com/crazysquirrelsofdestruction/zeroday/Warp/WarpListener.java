@@ -16,4 +16,6 @@ public interface WarpListener {
     public void onGameUpdateReceived(String message);
 
     public void onJoinPlayer(String uniqName);
+
+    public void onRemovePlayer(String uniqName);
 }

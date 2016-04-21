@@ -6,6 +6,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.crazysquirrelsofdestruction.zeroday.Controllers.GameController;
+import com.crazysquirrelsofdestruction.zeroday.Warp.WarpController;
 import com.crazysquirrelsofdestruction.zeroday.model.Settings;
 import com.crazysquirrelsofdestruction.zeroday.view.Menu;
 
@@ -18,6 +19,7 @@ public class ZeroDayGame extends Game implements ApplicationListener, InputProce
 	public boolean keyDown(int keycode) {
 		if(keycode == Input.Keys.BACK){
 			this.setScreen(new Menu(this));
+			WarpController.getInstance().handleLeave();
 		}
 		return false;
 	}

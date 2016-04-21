@@ -69,6 +69,10 @@ public class GameController implements WarpListener {
         return GameModel;
     }
 
+    public void onRemovePlayer(String uniqName){
+        GameModel.deletePlayer(uniqName);
+    }
+
     public void onGameFinished (int code, boolean isRemote) {
         if(code== WarpController.GAME_WIN){
             this.msg = game_loose;

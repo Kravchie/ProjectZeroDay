@@ -199,7 +199,6 @@ public class WarpController {
 
         if(localUser.equals(userName)==false && number_of_players== 2){
             warpListener.onJoinPlayer(userName);
-            //System.out.print("TRLALALA");
             startGame();
         }
     }
@@ -231,6 +230,7 @@ public class WarpController {
         log("onUserLeftRoom "+userName+" in room "+roomId);
         number_of_players--;
         if(STATE==STARTED && !localUser.equals(userName)){// Game Started and other user left the room
+            warpListener.onRemovePlayer(userName);
             warpListener.onGameFinished(ENEMY_LEFT, true);
         }
     }
