@@ -147,7 +147,7 @@ public class WarpController {
         }else if(event.getResult()==WarpResponseResultCode.RESOURCE_NOT_FOUND){// no such room found
             HashMap<String, Object> data = new HashMap<String, Object>();
             data.put("result", "");
-            warpClient.createRoom("ZeroDay", "CSOD", 4, data);//2 participants in room TO TEST
+            warpClient.createRoom("ZeroDay", "CSOD", 2, data);//2 participants in room TO TEST
             System.out.println("\nNDN_RoomCreated and Joined");
             //this.roomId=event.getData().getId();;
             //System.out.println("\nNDNNewRoomCreatedandJoined" + roomId);//ReadIDtoSuscribe
@@ -172,7 +172,7 @@ public class WarpController {
         log("onGetLiveRoomInfo: " + liveUsers.length);
         number_of_players = liveUsers.length;
         if(liveUsers!=null){
-            if(liveUsers.length==4){ //StartWith2Players
+            if(liveUsers.length==2){ //StartWith2Players
                 for(int i=0; i < liveUsers.length; i++){
                     if (!localUser.equals(liveUsers[i])) {
                         warpListener.onJoinPlayer(liveUsers[i]);
@@ -197,7 +197,7 @@ public class WarpController {
 
         number_of_players++;
 
-        if(localUser.equals(userName)==false && number_of_players== 4){
+        if(localUser.equals(userName)==false && number_of_players== 2){
             warpListener.onJoinPlayer(userName);
             //System.out.print("TRLALALA");
             startGame();
