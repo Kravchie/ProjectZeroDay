@@ -65,6 +65,10 @@ public class GameController implements WarpListener {
 
     }
 
+    public Game getGameModel() {
+        return GameModel;
+    }
+
     public void onGameFinished (int code, boolean isRemote) {
         if(code== WarpController.GAME_WIN){
             this.msg = game_loose;
@@ -98,15 +102,11 @@ public class GameController implements WarpListener {
 
     public void onError (String message) {
         this.msg = errorInConnection;
-
-
     }
 
     public void onJoinPlayer(String uniqName){
         int ind = GameModel.getPlayers().size();
         GameModel.addPlayer(uniqName, ind);
-        System.out.println("\nKK: uniq= " + uniqName);
-        System.out.println("\nKK: map= " + GameModel.getPlayers());
     }
 
     private String getRandomHexString(int numchars){
