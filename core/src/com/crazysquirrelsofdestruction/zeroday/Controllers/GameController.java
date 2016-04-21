@@ -49,15 +49,17 @@ public class GameController implements WarpListener {
         //waitingRoom.dispose();
         Gdx.app.postRunnable(new Runnable() {
             @Override
-            public void run () {
-                game.setScreen(new GameBoard(game,GameController.this));
+            public void run() {
+                game.setScreen(new GameBoard(game, GameController.this));
             }
         });
     }
 
     public void onTotalPlayers () {
         //state=GAME_READY;
-        WarpController.getInstance().startApp(getRandomHexString(10));//Need to Take User's Name
+        String uniqName = getRandomHexString(10);
+        WarpController.getInstance().startApp(uniqName);//Need to Take User's Name
+        this.GameModel.addPlayer(uniqName, 0);
         WarpController.getInstance().setListener(this);
         //game.setScreen(new WaitingRoom(game,this));
 
@@ -99,6 +101,14 @@ public class GameController implements WarpListener {
 
 
     }
+
+    public void onJoinPlayer(String uniqName){
+        int ind = GameModel.getPlayers().size();
+        GameModel.addPlayer(uniqName, ind);
+        System.out.println("\nKK: uniq= " + uniqName);
+        System.out.println("\nKK: map= " + GameModel.getPlayers());
+    }
+
     private String getRandomHexString(int numchars){
         Random r = new Random();
         StringBuffer sb = new StringBuffer();

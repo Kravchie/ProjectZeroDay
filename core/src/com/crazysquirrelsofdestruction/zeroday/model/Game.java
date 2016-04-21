@@ -14,4 +14,12 @@ public class Game {
         this.players = new HashMap(); //object player + id as a key
         this.table = new Table();
     }
+
+    public HashMap getPlayers() {
+        return players;
+    }
+
+    public void addPlayer(String uniqName, int index) {
+        this.players.put(uniqName, index);
+    }
 }

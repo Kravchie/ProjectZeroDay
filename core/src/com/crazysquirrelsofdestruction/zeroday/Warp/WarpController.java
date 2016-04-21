@@ -3,6 +3,7 @@ package com.crazysquirrelsofdestruction.zeroday.Warp;
 /**
  * Created by Nadin on 4/15/2016.
  */
+import java.util.Arrays;
 import java.util.HashMap;
 
 import com.shephertz.app42.gaming.multiplayer.client.WarpClient;
@@ -172,6 +173,12 @@ public class WarpController {
         number_of_players = liveUsers.length;
         if(liveUsers!=null){
             if(liveUsers.length==2){ //StartWith2Players
+                for(int i=0; i < liveUsers.length; i++){
+                    if (!localUser.equals(liveUsers[i])) {
+                        warpListener.onJoinPlayer(liveUsers[i]);
+                    }
+                }
+                System.out.print("KK: Live Users= " + Arrays.toString(liveUsers));
                 startGame();
             }else{
                 waitForOtherUser();
@@ -191,6 +198,8 @@ public class WarpController {
         number_of_players++;
 
         if(localUser.equals(userName)==false && number_of_players== 2){
+            warpListener.onJoinPlayer(userName);
+            //System.out.print("TRLALALA");
             startGame();
         }
     }

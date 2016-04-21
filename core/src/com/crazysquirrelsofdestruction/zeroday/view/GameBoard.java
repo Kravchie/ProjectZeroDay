@@ -44,7 +44,6 @@ public class GameBoard implements Screen {
 
     @Override
     public void render(float delta) {
-        System.out.print("\nNDN_RenderingBoard");
         Gdx.gl.glClearColor(0, 0, 0.2f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
@@ -53,7 +52,8 @@ public class GameBoard implements Screen {
 
         game.batch.begin();
         game.batch.draw(img, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        game.batch.draw(table, (float)(Gdx.graphics.getWidth()*0.25), (float)(Gdx.graphics.getHeight()*0.4), (float)(Gdx.graphics.getWidth()*0.4), Gdx.graphics.getHeight()/3);
+        game.batch.draw(table, (float)(Gdx.graphics.getWidth()*0.30), (float)(Gdx.graphics.getHeight()*0.35), (float)(Gdx.graphics.getWidth()*0.4), Gdx.graphics.getHeight()/3);
+
         game.batch.end();
 
         //update game model
