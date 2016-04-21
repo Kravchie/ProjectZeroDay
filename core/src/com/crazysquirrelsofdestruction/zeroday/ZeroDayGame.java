@@ -21,7 +21,7 @@ public class ZeroDayGame extends Game implements ApplicationListener, InputProce
 		}
 		return false;
 	}
-	public void onGameStarted(){
+	public void startingController(){
 
 		gameController = new GameController(this);
 

@@ -1,6 +1,7 @@
 package com.crazysquirrelsofdestruction.zeroday.Controllers;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.crazysquirrelsofdestruction.zeroday.Warp.WarpController;
 import com.crazysquirrelsofdestruction.zeroday.Warp.WarpListener;
 import com.crazysquirrelsofdestruction.zeroday.ZeroDayGame;
@@ -30,31 +31,35 @@ public class GameController implements WarpListener {
     private final String   enemy_left = "Congrats You Win! Enemy Left the Game";
     private String msg = tryingToConnect;
     final ZeroDayGame game;
-    private WaitingRoom waitingRoom;
+    private Screen waitingRoom;
 
     public GameController(final ZeroDayGame game) {
         this.game = game;
+        //state=GAME_READY;
         GameModel = new Game();
-        state=GAME_READY;
         this.onTotalPlayers();
 
     }
 
     public void onGameStarted (String message) {
         state=GAME_RUNNING;
-        waitingRoom = (WaitingRoom)game.getScreen();
-        game.setScreen(new GameBoard(game,this));
-        waitingRoom.dispose();
-        /*
-        WarpController.getInstance().startApp(getRandomHexString(10));//Need to Take User's Name
-        game.setScreen(new WaitingRoom(game, this));*/
-
+        waitingRoom = game.getScreen();
+        System.out.print("\nNDN_Going To Board Game View");
+        //game.setScreen(new GameBoard(game, this));
+        //waitingRoom.dispose();
+        Gdx.app.postRunnable(new Runnable() {
+            @Override
+            public void run () {
+                game.setScreen(new GameBoard(game,GameController.this));
+            }
+        });
     }
+
     public void onTotalPlayers () {
-        //state=GAME_READY; //Initiated in constructor
+        //state=GAME_READY;
         WarpController.getInstance().startApp(getRandomHexString(10));//Need to Take User's Name
         WarpController.getInstance().setListener(this);
-        game.setScreen(new WaitingRoom(game,this));
+        //game.setScreen(new WaitingRoom(game,this));
 
     }
 
@@ -76,11 +81,22 @@ public class GameController implements WarpListener {
 
     public void onWaitingStarted(String message) {
         this.msg = waitForOtherUser;
+        state=GAME_READY;
+        System.out.print("\nNDN_Going Waiting View");
+        Gdx.app.postRunnable(new Runnable() {
+            @Override
+            public void run() {
+                //game.setScreen(new GameBoard(game, GameController.this));
+                game.setScreen(new WaitingRoom(game,GameController.this));
+            }
+        });
+
 
     }
 
     public void onError (String message) {
         this.msg = errorInConnection;
+
 
     }
     private String getRandomHexString(int numchars){

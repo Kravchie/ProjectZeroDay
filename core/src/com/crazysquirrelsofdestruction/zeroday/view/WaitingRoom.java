@@ -9,39 +9,12 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.crazysquirrelsofdestruction.zeroday.Controllers.GameController;
 import com.crazysquirrelsofdestruction.zeroday.Warp.WarpController;
-import com.crazysquirrelsofdestruction.zeroday.Warp.WarpListener;
 import com.crazysquirrelsofdestruction.zeroday.ZeroDayGame;
 
 /**
  * Created by Klaudia on 2016-04-19.
  */
 public class WaitingRoom implements Screen {
-    /*@Override
-    public void onWaitingStarted(String message) {
-
-    }
-
-    @Override
-    public void onError(String message) {
-
-    }
-
-    @Override
-    public void onGameStarted(String message) {
-
-        game.setScreen(new GameBoard(game, controller));
-
-    }
-
-    @Override
-    public void onGameFinished(int code, boolean isRemote) {
-
-    }
-
-    @Override
-    public void onGameUpdateReceived(String message) {
-
-    }*/
 
     final ZeroDayGame game;
     final GameController controller;
@@ -54,7 +27,7 @@ public class WaitingRoom implements Screen {
 
     Texture img;
 
-    public WaitingRoom(final ZeroDayGame game, GameController controller) {
+    public WaitingRoom(final ZeroDayGame game, final GameController controller) {
         this.game = game;
         this.controller = controller;
 
@@ -69,7 +42,7 @@ public class WaitingRoom implements Screen {
         font.getData().setScale(4);
 
         img = new Texture("background_and_logo.png");
-
+        System.out.print("\nNDN_Have Entered the waiting View");
         //WarpController.getInstance().setListener(this);
     }
 
@@ -117,6 +90,7 @@ public class WaitingRoom implements Screen {
 
     @Override
     public void dispose() {
+        System.out.print("NDN_Waiting Disposed");
         font.dispose();
     }
 }

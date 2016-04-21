@@ -35,8 +35,7 @@ public class SimpleButton {
                         case 1 :
                             System.out.println("Play button clicked");
                             //game.setScreen(new GamePlayTest(game));
-
-                            game.onGameStarted();
+                            game.startingController();
                             break;
 
                         case 2 :

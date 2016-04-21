@@ -118,7 +118,7 @@ public class WarpController {
         if(status){
             warpClient.initUDP();
             warpClient.joinRoomInRange(1, 1, false);//1 Participant already in room
-            System.out.println("\nNDNConnected");
+            System.out.println("\nNDN_Connected");
         }else{
             isConnected = false;
             handleError();
@@ -140,14 +140,16 @@ public class WarpController {
     public void onJoinRoomDone(RoomEvent event){
         log("onJoinRoomDone: "+event.getResult());
         if(event.getResult()==WarpResponseResultCode.SUCCESS){// success case
-            System.out.println("\nNDNIn room");
+            System.out.println("\nNDN_JoinedExistingRoom");
             this.roomId = event.getData().getId();
             warpClient.subscribeRoom(roomId);
         }else if(event.getResult()==WarpResponseResultCode.RESOURCE_NOT_FOUND){// no such room found
             HashMap<String, Object> data = new HashMap<String, Object>();
             data.put("result", "");
             warpClient.createRoom("ZeroDay", "CSOD", 2, data);//2 participants in room TO TEST
-            System.out.println("\nNDNIn roomCreated");
+            System.out.println("\nNDN_RoomCreated and Joined");
+            //this.roomId=event.getData().getId();;
+            //System.out.println("\nNDNNewRoomCreatedandJoined" + roomId);//ReadIDtoSuscribe
         }else{
             warpClient.disconnect();
             handleError();
@@ -236,8 +238,9 @@ public class WarpController {
 
     private void startGame(){
         STATE = STARTED;
-        warpListener.onGameStarted("Start the Game");
         System.out.print("\nNDNEnoughPLayers");
+        warpListener.onGameStarted("Start the Game");
+
 
     }
 
@@ -264,8 +267,6 @@ public class WarpController {
             warpClient.disconnect();
         }
     }
-
-
 private void disconnect(){
         warpClient.removeConnectionRequestListener(new ConnectionListener(this));
         warpClient.removeChatRequestListener(new ChatListener(this));

@@ -2,16 +2,11 @@ package com.crazysquirrelsofdestruction.zeroday.view;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.crazysquirrelsofdestruction.zeroday.Controllers.GameController;
 import com.crazysquirrelsofdestruction.zeroday.ZeroDayGame;
-import com.crazysquirrelsofdestruction.zeroday.view.components.ToggleButton;
-import com.crazysquirrelsofdestruction.zeroday.Warp.WarpController;
-import com.crazysquirrelsofdestruction.zeroday.Warp.WarpListener;
 
 
 
@@ -19,7 +14,7 @@ import com.crazysquirrelsofdestruction.zeroday.Warp.WarpListener;
  * Created by Klaudia on 2016-04-18.
  */
 
-public class GameBoard implements Screen, WarpListener {
+public class GameBoard implements Screen {
 
     final ZeroDayGame game;
     OrthographicCamera camera;
@@ -29,11 +24,11 @@ public class GameBoard implements Screen, WarpListener {
     Texture img;
     Texture table;
 
-    public GameBoard(final ZeroDayGame game, final GameController controller) {
+    public GameBoard(final ZeroDayGame game, final GameController controller) { //DELETED FINAL for GameController
 
         this.game = game;
         this.controller = controller;
-        System.out.print("NDN_IN GAME BOARD");
+        System.out.print("\nNDN_IN GAME BOARD");
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
@@ -49,7 +44,7 @@ public class GameBoard implements Screen, WarpListener {
 
     @Override
     public void render(float delta) {
-
+        System.out.print("\nNDN_RenderingBoard");
         Gdx.gl.glClearColor(0, 0, 0.2f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
@@ -92,28 +87,5 @@ public class GameBoard implements Screen, WarpListener {
     public void dispose() {
 
     }
-    @Override
-    public void onWaitingStarted(String message) {
 
-    }
-
-    @Override
-    public void onError(String message) {
-
-    }
-
-    @Override
-    public void onGameStarted(String message) {
-
-    }
-
-    @Override
-    public void onGameFinished(int code, boolean isRemote) {
-
-    }
-
-    @Override
-    public void onGameUpdateReceived(String message) {
-
-    }
 }
