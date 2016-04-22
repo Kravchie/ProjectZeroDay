@@ -84,7 +84,7 @@ public class Rules implements Screen {
         file = Gdx.files.internal("rules.txt");
         font = new BitmapFont();
         font.setColor(Color.WHITE);
-        font.getData().setScale(2);
+        font.getData().setScale((float)2.3);
         rules = file.readString();
 
         img = new Texture("background_and_logo.png");

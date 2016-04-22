@@ -72,6 +72,7 @@ public class GameBoard implements Screen {
                     break;
             }
         }
+
         game.batch.end();
 
         //update game model

@@ -8,7 +8,9 @@ import java.util.HashMap;
 public class Game {
 
     private HashMap players;
+    private Player[] players_in;
     private Table table;
+    private Card[] deck;
 
     public Game() {
         this.players = new HashMap(); //object player + id as a key

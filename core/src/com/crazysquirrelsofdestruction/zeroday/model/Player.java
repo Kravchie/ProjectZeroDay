@@ -7,12 +7,12 @@ import java.util.HashMap;
  */
 public class Player {
 
-    private HashMap deck;
+    private Card[] cards;
     private int points;
-    private int id;
+    private String uniqName;
 
     public Player(){
-        deck = new HashMap();
+        cards = new Card[2];
         points = 0;
     }
 
@@ -22,5 +22,21 @@ public class Player {
 
     public void setPoints(int points){
         this.points = points;
+    }
+
+    public Card[] getCards() {
+        return cards;
+    }
+
+    public void setCards(Card[] cards) {
+        this.cards = cards;
+    }
+
+    public String getUniqName() {
+        return uniqName;
+    }
+
+    public void setUniqName(String uniqName) {
+        this.uniqName = uniqName;
     }
 }

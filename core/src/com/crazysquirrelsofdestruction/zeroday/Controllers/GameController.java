@@ -10,7 +10,6 @@ import com.crazysquirrelsofdestruction.zeroday.view.GameBoard;
 import com.crazysquirrelsofdestruction.zeroday.view.WaitingRoom;
 
 import java.util.Random;
-//import com.crazysquirrelsofdestruction.zeroday.view.GameTable;
 
 /**
  * Created by Klaudia on 2016-04-18.
@@ -35,18 +34,14 @@ public class GameController implements WarpListener {
 
     public GameController(final ZeroDayGame game) {
         this.game = game;
-        //state=GAME_READY;
         GameModel = new Game();
         this.onTotalPlayers();
-
     }
 
     public void onGameStarted (String message) {
         state=GAME_RUNNING;
         waitingRoom = game.getScreen();
         System.out.print("\nNDN_Going To Board Game View");
-        //game.setScreen(new GameBoard(game, this));
-        //waitingRoom.dispose();
         Gdx.app.postRunnable(new Runnable() {
             @Override
             public void run() {
@@ -56,13 +51,10 @@ public class GameController implements WarpListener {
     }
 
     public void onTotalPlayers () {
-        //state=GAME_READY;
         String uniqName = getRandomHexString(10);
         WarpController.getInstance().startApp(uniqName);//Need to Take User's Name
         this.GameModel.addPlayer(uniqName, 0);
         WarpController.getInstance().setListener(this);
-        //game.setScreen(new WaitingRoom(game,this));
-
     }
 
     public Game getGameModel() {
