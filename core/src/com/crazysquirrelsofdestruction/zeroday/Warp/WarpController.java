@@ -197,9 +197,11 @@ public class WarpController {
 
         number_of_players++;
 
-        if(localUser.equals(userName)==false && number_of_players== 4){
+        if(localUser.equals(userName) == false){
             warpListener.onJoinPlayer(userName);
-            startGame();
+            if(number_of_players == 4) {
+                startGame();
+            }
         }
     }
 
