@@ -158,7 +158,7 @@ public class WarpController {
     }
 
     public void onRoomSubscribed(String roomId){
-        log("onSubscribeRoomDone: "+roomId);
+        log("onSubscribeRoomDone: " + roomId);
         if(roomId!=null){
             isConnected = true;
             warpClient.getLiveRoomInfo(roomId);
@@ -170,7 +170,13 @@ public class WarpController {
 
     public void onGetLiveRoomInfo(String[] liveUsers){
         log("onGetLiveRoomInfo: " + liveUsers.length);
+        System.out.println("KK: Live users order = " + liveUsers[0]);
         number_of_players = liveUsers.length;
+        for(int i=0; i < liveUsers.length; i++){
+            if(!localUser.equals(liveUsers[i])) {
+                warpListener.onJoinPlayer(liveUsers[i]);
+            }
+        }
         if(liveUsers!=null){
             if(liveUsers.length==4){ //StartWith2Players
                 for(int i=0; i < liveUsers.length; i++){
