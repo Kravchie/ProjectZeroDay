@@ -176,6 +176,9 @@ public class WarpController {
             if(!localUser.equals(liveUsers[i])) {
                 warpListener.onJoinPlayer(liveUsers[i]);
             }
+            else{
+                warpListener.onAssignTurn(i+1);
+            }
         }
         if(liveUsers!=null){
             if(liveUsers.length==4){ //StartWith2Players

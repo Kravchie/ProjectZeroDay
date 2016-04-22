@@ -6,6 +6,7 @@ import com.crazysquirrelsofdestruction.zeroday.Warp.WarpController;
 import com.crazysquirrelsofdestruction.zeroday.Warp.WarpListener;
 import com.crazysquirrelsofdestruction.zeroday.ZeroDayGame;
 import com.crazysquirrelsofdestruction.zeroday.model.Game;
+import com.crazysquirrelsofdestruction.zeroday.model.Player;
 import com.crazysquirrelsofdestruction.zeroday.view.GameBoard;
 import com.crazysquirrelsofdestruction.zeroday.view.WaitingRoom;
 
@@ -48,12 +49,15 @@ public class GameController implements WarpListener {
                 game.setScreen(new GameBoard(game, GameController.this));
             }
         });
+
+        System.out.println("KK: My place in queue = " + this.GameModel.getLocalPlayer().getInQueue());
     }
 
     public void onTotalPlayers () {
         String uniqName = getRandomHexString(10);
         WarpController.getInstance().startApp(uniqName);//Need to Take User's Name
         this.GameModel.addPlayer(uniqName, 0);
+        this.GameModel.setLocalPlayer(new Player(uniqName));
         WarpController.getInstance().setListener(this);
     }
 
@@ -88,12 +92,15 @@ public class GameController implements WarpListener {
         Gdx.app.postRunnable(new Runnable() {
             @Override
             public void run() {
-                //game.setScreen(new GameBoard(game, GameController.this));
                 game.setScreen(new WaitingRoom(game,GameController.this));
             }
         });
 
 
+    }
+
+    public void onAssignTurn(int placeInTurn){
+        this.GameModel.getLocalPlayer().setInQueue(placeInTurn);
     }
 
     public void onError (String message) {

@@ -10,8 +10,11 @@ public class Player {
     private Card[] cards;
     private int points;
     private String uniqName;
+    private int inQueue;
 
-    public Player(){
+    public Player(String uniqName){
+        this.uniqName = uniqName;
+        this.inQueue = inQueue;
         cards = new Card[2];
         points = 0;
     }
@@ -38,5 +41,13 @@ public class Player {
 
     public void setUniqName(String uniqName) {
         this.uniqName = uniqName;
+    }
+
+    public int getInQueue() {
+        return inQueue;
+    }
+
+    public void setInQueue(int inQueue) {
+        this.inQueue = inQueue;
     }
 }

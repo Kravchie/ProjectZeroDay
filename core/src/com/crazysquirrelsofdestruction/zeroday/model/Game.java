@@ -8,9 +8,9 @@ import java.util.HashMap;
 public class Game {
 
     private HashMap players;
-    private Player[] players_in;
     private Table table;
     private Card[] deck;
+    private Player localPlayer;
 
     public Game() {
         this.players = new HashMap(); //object player + id as a key
@@ -27,5 +27,13 @@ public class Game {
 
     public void deletePlayer(String uniqName) {
         this.players.remove(uniqName);
+    }
+
+    public Player getLocalPlayer() {
+        return localPlayer;
+    }
+
+    public void setLocalPlayer(Player localPlayer) {
+        this.localPlayer = localPlayer;
     }
 }
