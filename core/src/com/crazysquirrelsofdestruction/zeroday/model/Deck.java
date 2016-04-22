@@ -23,6 +23,7 @@ public class Deck {
             3 x Cracker card
             4 x Skiddie card
          */
+        deckList.clear();
         deckList.add(new Card(Card.TYPE_BIGFISH));
 
         deckList.add(new Card(Card.TYPE_WHITEHAT));
@@ -51,5 +52,9 @@ public class Deck {
 
     public void remove_card(Card card) {
         deckList.remove(card);
+    }
+
+    public boolean is_empty() {
+        return deckList.isEmpty();
     }
 }
