@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.crazysquirrelsofdestruction.zeroday.Controllers.GameController;
 import com.crazysquirrelsofdestruction.zeroday.ZeroDayGame;
+import com.crazysquirrelsofdestruction.zeroday.model.Card;
 
 import java.util.ArrayList;
 
@@ -72,6 +73,14 @@ public class GameBoard implements Screen {
                     break;
             }
         }
+
+        if(game.gameController.isMyTurn()){
+            System.out.println("KK; IT IS IN");
+            game.gameController.initTurn();
+            Card userCard = game.gameController.getGameModel().getLocalPlayer().getCards()[0];
+            game.batch.draw(new Texture(userCard.getCardImage(userCard.getType())), (float)(Gdx.graphics.getWidth()*0.15), (float)(Gdx.graphics.getHeight()*0.05), (float)(Gdx.graphics.getWidth()*0.3), (float)(Gdx.graphics.getHeight()*0.4));
+        }
+
 
         game.batch.end();
 
