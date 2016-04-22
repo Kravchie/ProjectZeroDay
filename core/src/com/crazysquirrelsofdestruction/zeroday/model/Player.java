@@ -7,12 +7,13 @@ import java.util.HashMap;
  */
 public class Player {
 
-    private HashMap deck;
+    private Deck deck;
+    private int status;
     private int points;
     private int id;
 
     public Player(){
-        deck = new HashMap();
+        deck = new Deck();
         points = 0;
     }
 
