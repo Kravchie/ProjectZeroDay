@@ -20,4 +20,6 @@ public interface WarpListener {
     public void onRemovePlayer(String uniqName);
 
     public void onAssignTurn(int placeInTurn);
+
+    public void onAddOrdered(String uniqName, int index);
 }

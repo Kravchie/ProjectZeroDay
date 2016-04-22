@@ -36,4 +36,9 @@ public class Game {
     public void setLocalPlayer(Player localPlayer) {
         this.localPlayer = localPlayer;
     }
+
+    public Table getTable() {
+        return table;
+    }
+
 }

@@ -51,6 +51,7 @@ public class GameController implements WarpListener {
         });
 
         System.out.println("KK: My place in queue = " + this.GameModel.getLocalPlayer().getInQueue());
+        System.out.println("KK: Ordered Player Hashmap in Table = " + this.GameModel.getTable().getOrderedPlayers());
     }
 
     public void onTotalPlayers () {
@@ -67,6 +68,8 @@ public class GameController implements WarpListener {
 
     public void onRemovePlayer(String uniqName){
         GameModel.deletePlayer(uniqName);
+        GameModel.getTable().deleteOrderedPlayer(uniqName);
+        System.out.println("KK: Ordered Player Hashmap in Table = " + this.GameModel.getTable().getOrderedPlayers());
     }
 
     public void onGameFinished (int code, boolean isRemote) {
@@ -96,7 +99,6 @@ public class GameController implements WarpListener {
             }
         });
 
-
     }
 
     public void onAssignTurn(int placeInTurn){
@@ -110,6 +112,11 @@ public class GameController implements WarpListener {
     public void onJoinPlayer(String uniqName){
         int ind = GameModel.getPlayers().size();
         GameModel.addPlayer(uniqName, ind);
+    }
+
+    @Override
+    public void onAddOrdered(String uniqName, int index) {
+        this.GameModel.getTable().setOrderedPlayers(uniqName, index);
     }
 
     private String getRandomHexString(int numchars){

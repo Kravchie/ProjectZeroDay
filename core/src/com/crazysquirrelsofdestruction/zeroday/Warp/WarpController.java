@@ -46,6 +46,7 @@ public class WarpController {
 
     //info for waiting room
     public int number_of_players;
+    public int index = 0;
 
     public WarpController() {
         initAppwarp();
@@ -170,7 +171,7 @@ public class WarpController {
 
     public void onGetLiveRoomInfo(String[] liveUsers){
         log("onGetLiveRoomInfo: " + liveUsers.length);
-        System.out.println("KK: Live users order = " + liveUsers[0]);
+        System.out.println("KK: Live users order = " + localUser);
         number_of_players = liveUsers.length;
         for(int i=0; i < liveUsers.length; i++){
             if(!localUser.equals(liveUsers[i])) {
@@ -179,6 +180,8 @@ public class WarpController {
             else{
                 warpListener.onAssignTurn(i+1);
             }
+            warpListener.onAddOrdered(liveUsers[i], i+1);
+            index++;
         }
         if(liveUsers!=null){
             if(liveUsers.length==4){ //StartWith2Players
@@ -198,16 +201,14 @@ public class WarpController {
         }
     }
 
-    public int getliveUsers(){
-        return number_of_players;
-    }
-
     public void onUserJoinedRoom(String roomId, String userName){
 
         number_of_players++;
 
         if(localUser.equals(userName) == false){
             warpListener.onJoinPlayer(userName);
+            warpListener.onAddOrdered(userName, index+1);
+            index++;
             if(number_of_players == 4) {
                 startGame();
             }
