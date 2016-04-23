@@ -8,4 +8,5 @@ eclipse.project {
 dependencies {
     compile project(':App42MultiPlayerGamingSDK')
     compile project(':org.json')
+    compile 'com.google.code.gson:gson:2.6.2'
 }
