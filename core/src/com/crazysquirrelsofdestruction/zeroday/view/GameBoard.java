@@ -90,7 +90,12 @@ public class GameBoard implements Screen {
         if(initState) {
             game.gameController.initTurn();
             initState = false;
-            game.gameController.getGameModel().getTable().setRoundCounter(game.gameController.getGameModel().getLocalPlayer().getInQueue()+1);
+            if(game.gameController.getGameModel().getLocalPlayer().getInQueue()+1 == 4){
+                game.gameController.getGameModel().getTable().setRoundCounter(1);
+            }else{
+                game.gameController.getGameModel().getTable().setRoundCounter(game.gameController.getGameModel().getLocalPlayer().getInQueue()+1);
+            }
+            System.out.println("KK: Player = " + game.gameController.getGameModel().getLocalPlayer().getInQueue() + " length of deck = " + game.gameController.getGameModel().getTable().getDeck().getDeckSize());
         }
         drawCards();
 

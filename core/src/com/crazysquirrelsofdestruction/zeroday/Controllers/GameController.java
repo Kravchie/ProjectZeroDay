@@ -158,8 +158,7 @@ public class GameController implements WarpListener {
             System.out.println("initTurn: data = " + data);
             WarpController.getInstance().sendGameUpdate(data);
             this.GameModel.getLocalPlayer().setCard(deckCard);
-            System.out.println("KK: Player = " + GameModel.getLocalPlayer().getInQueue() + " length of deck = " + GameModel.getTable().getDeck().getDeckSize());
-        }
+             }
     }
     public void turn(){
         if(isMyTurn()) {
