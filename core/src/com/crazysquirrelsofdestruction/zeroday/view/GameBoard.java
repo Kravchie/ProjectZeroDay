@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.crazysquirrelsofdestruction.zeroday.Controllers.GameController;
 import com.crazysquirrelsofdestruction.zeroday.ZeroDayGame;
 import com.crazysquirrelsofdestruction.zeroday.model.Card;
+import com.crazysquirrelsofdestruction.zeroday.view.components.CardButton;
 
 
 /**
@@ -25,10 +26,13 @@ public class GameBoard implements Screen {
     Texture table;
     Texture[] texturesPlayers;
     Texture[] texturesCards;
+    CardButton cardButton1;
+    CardButton cardButton2;
+    private int card_displayed;
 
 
     public GameBoard(final ZeroDayGame game, final GameController controller) { //DELETED FINAL for GameController
-
+        card_displayed = 0;
         this.game = game;
         this.controller = controller;
         System.out.println("NDN_IN GAME BOARD");
@@ -117,10 +121,21 @@ public class GameBoard implements Screen {
         if(game.gameController.isMyTurn()) {
             Card userCard = game.gameController.getGameModel().getLocalPlayer().getCards()[0];
             Card userCard2 = game.gameController.getGameModel().getLocalPlayer().getCards()[1];
-            game.batch.draw(texturesCards[userCard.getType()], (float) (Gdx.graphics.getWidth() * 0.05), (float) (Gdx.graphics.getHeight() * 0.01), (float) (Gdx.graphics.getWidth() * 0.4), (float) (Gdx.graphics.getHeight() * 0.4));
-            if (!(userCard2 == null))
-                game.batch.draw(texturesCards[userCard2.getType()], (float) (Gdx.graphics.getWidth() * 0.55), (float) (Gdx.graphics.getHeight() * 0.01), (float) (Gdx.graphics.getWidth() * 0.4), (float) (Gdx.graphics.getHeight() * 0.4));
-        }
+            int typ1 = game.gameController.getGameModel().getLocalPlayer().getCards()[0].getType();
+            if(card_displayed == 0) {
+                cardButton1 = new CardButton(game.gameController.getGameModel().getLocalPlayer().getCards()[0].getCardImage(typ1), (float) (Gdx.graphics.getWidth() * 0.05), (float) (Gdx.graphics.getHeight() * 0.01), (float) (Gdx.graphics.getWidth() * 0.4), (float) (Gdx.graphics.getHeight() * 0.4));
+                card_displayed = 1;
+            }
+                cardButton1.update(game.batch, this.game);
+            if (!(userCard2 == null)) {
+                int typ2 = game.gameController.getGameModel().getLocalPlayer().getCards()[1].getType();
+                if(card_displayed == 1) {
+                    cardButton2 = new CardButton(game.gameController.getGameModel().getLocalPlayer().getCards()[1].getCardImage(typ2), (float) (Gdx.graphics.getWidth() * 0.01), (float) (Gdx.graphics.getHeight() * 0.01), (float) (Gdx.graphics.getWidth() * 0.4), (float) (Gdx.graphics.getHeight() * 0.4));
+                    card_displayed = 2;
+                }
+                    cardButton2.update(game.batch, this.game);
+         }
+            }
 
     }
 }
