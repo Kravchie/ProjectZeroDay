@@ -25,7 +25,8 @@ public class GameBoard implements Screen {
 
     Texture img;
     Texture table;
-    Texture[] textures;
+    Texture[] texturesPlayers;
+    Texture[] texturesCards;
 
 
     public GameBoard(final ZeroDayGame game, final GameController controller) { //DELETED FINAL for GameController
@@ -38,9 +39,16 @@ public class GameBoard implements Screen {
 
         img = new Texture("background_and_logo.png");
         table = new Texture("table.png");
-        textures = new Texture[controller.getGameModel().getPlayers().size()];
+        texturesPlayers = new Texture[controller.getGameModel().getPlayers().size()];
         for(int i=0; i < controller.getGameModel().getPlayers().size()-1; i++ ){
-            textures[i] = new Texture("player" + (i+1) + ".png");
+            texturesPlayers[i] = new Texture("player" + (i+1) + ".png");
+        }
+
+        texturesCards = new Texture[5];
+
+        for(int i=0; i < 5; i++){
+            Card sampleCard = new Card(i);
+            texturesCards[i] = new Texture(sampleCard.getCardImage(i));
         }
     }
 
@@ -63,13 +71,13 @@ public class GameBoard implements Screen {
         for(int i=0; i < controller.getGameModel().getPlayers().size()-1; i++ ){
             switch (i) {
                 case 0:
-                    game.batch.draw(textures[i], (float)(Gdx.graphics.getWidth()*0.35), (float)(Gdx.graphics.getHeight()*0.70), (float)(Gdx.graphics.getWidth()*0.3), (float)(Gdx.graphics.getHeight()*0.2));
+                    game.batch.draw(texturesPlayers[i], (float)(Gdx.graphics.getWidth()*0.35), (float)(Gdx.graphics.getHeight()*0.70), (float)(Gdx.graphics.getWidth()*0.3), (float)(Gdx.graphics.getHeight()*0.2));
                     break;
                 case 1:
-                    game.batch.draw(textures[i], (float)(Gdx.graphics.getWidth()*0.05), (float)(Gdx.graphics.getHeight()*0.35), (float)(Gdx.graphics.getWidth()*0.3), (float)(Gdx.graphics.getHeight()*0.2));
+                    game.batch.draw(texturesPlayers[i], (float)(Gdx.graphics.getWidth()*0.05), (float)(Gdx.graphics.getHeight()*0.35), (float)(Gdx.graphics.getWidth()*0.3), (float)(Gdx.graphics.getHeight()*0.2));
                     break;
                 case 2:
-                    game.batch.draw(textures[i], (float)(Gdx.graphics.getWidth()*0.65), (float)(Gdx.graphics.getHeight()*0.35), (float)(Gdx.graphics.getWidth()*0.3), (float)(Gdx.graphics.getHeight()*0.2));
+                    game.batch.draw(texturesPlayers[i], (float)(Gdx.graphics.getWidth()*0.65), (float)(Gdx.graphics.getHeight()*0.35), (float)(Gdx.graphics.getWidth()*0.3), (float)(Gdx.graphics.getHeight()*0.2));
                     break;
             }
         }
@@ -109,14 +117,12 @@ public class GameBoard implements Screen {
 
     public void drawCards(){
         if(game.gameController.isMyTurn()) {
-            System.out.println("KK: IN drawCards FUNCTION");
             Card userCard = game.gameController.getGameModel().getLocalPlayer().getCards()[0];
             Card userCard2 = game.gameController.getGameModel().getLocalPlayer().getCards()[1];
-            game.batch.draw(new Texture("player1.png"), (float) (Gdx.graphics.getWidth() * 0.15), (float) (Gdx.graphics.getHeight() * 0.01), (float) (Gdx.graphics.getWidth() * 0.4), (float) (Gdx.graphics.getHeight() * 0.4));
+            game.batch.draw(texturesCards[userCard.getType()], (float) (Gdx.graphics.getWidth() * 0.05), (float) (Gdx.graphics.getHeight() * 0.01), (float) (Gdx.graphics.getWidth() * 0.4), (float) (Gdx.graphics.getHeight() * 0.4));
             if (!(userCard2 == null))
-                game.batch.draw(new Texture(userCard2.getCardImage(userCard2.getType())), (float) (Gdx.graphics.getWidth() * 0.55), (float) (Gdx.graphics.getHeight() * 0.01), (float) (Gdx.graphics.getWidth() * 0.4), (float) (Gdx.graphics.getHeight() * 0.4));
+                game.batch.draw(texturesCards[userCard2.getType()], (float) (Gdx.graphics.getWidth() * 0.55), (float) (Gdx.graphics.getHeight() * 0.01), (float) (Gdx.graphics.getWidth() * 0.4), (float) (Gdx.graphics.getHeight() * 0.4));
         }
 
     }
-
 }

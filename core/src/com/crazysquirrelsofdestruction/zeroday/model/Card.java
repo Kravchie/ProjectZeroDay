@@ -25,19 +25,19 @@ public class Card {
         String path = "";
         switch(type){
             case TYPE_BIGFISH:
-                path = "BigFish_card.png";
+                path = "BigFish_card_small.png";
             break;
             case TYPE_WHITEHAT:
-                path = "WhiteHat_card.png";
+                path = "WhiteHat_card_small.png";
             break;
             case TYPE_BLACKHAT:
-                path = "BlackHat_card.png";
+                path = "BlackHat_card_small.png";
             break;
             case TYPE_CRACKER:
-                path = "Cracker_card.png";
+                path = "Cracker_card_small.png";
             break;
             case TYPE_SKIDDIE:
-                path = "Skiddie_card.png";
+                path = "Skiddie_card_small.png";
             break;
         }
         return path;
