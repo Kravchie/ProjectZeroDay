@@ -9,7 +9,6 @@ public class Game {
 
     private HashMap players;
     private Table table;
-    private Card[] deck;
     private Player localPlayer;
 
     public Game() {
@@ -40,5 +39,4 @@ public class Game {
     public Table getTable() {
         return table;
     }
-
 }

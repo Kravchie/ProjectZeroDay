@@ -16,4 +16,30 @@ public class Card {
     public Card(int type) {
         this.type = type;
     }
+
+    public int getType() {
+        return type;
+    }
+
+    public String getCardImage(int type) {
+        String path = "";
+        switch(type){
+            case TYPE_BIGFISH:
+                path = "BigFish_card.png";
+            break;
+            case TYPE_WHITEHAT:
+                path = "WhiteHat_card.png";
+            break;
+            case TYPE_BLACKHAT:
+                path = "BlackHat_card.png";
+            break;
+            case TYPE_CRACKER:
+                path = "Cracker_card.png";
+            break;
+            case TYPE_SKIDDIE:
+                path = "Skiddie_card.png";
+            break;
+        }
+        return path;
+    }
 }

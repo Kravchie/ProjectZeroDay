@@ -15,6 +15,7 @@ public class ZeroDayGame extends Game implements ApplicationListener, InputProce
 	public SpriteBatch batch;
 	public Settings settings;
 	public GameController gameController;
+
 	@Override
 	public boolean keyDown(int keycode) {
 		if(keycode == Input.Keys.BACK){

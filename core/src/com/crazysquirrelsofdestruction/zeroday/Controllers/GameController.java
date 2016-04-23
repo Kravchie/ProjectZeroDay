@@ -128,4 +128,27 @@ public class GameController implements WarpListener {
         return sb.toString().substring(0, numchars);
     }
 
+    public Boolean isMyTurn(){
+        if(this.GameModel.getLocalPlayer().getInQueue() == this.GameModel.getTable().getRoundCounter()){
+            return true;
+        } else{
+            return false;
+        }
+    }
+
+    public void initTurn(){
+        if(isMyTurn()) {
+            this.GameModel.getLocalPlayer().withdraw(this.GameModel.getTable().getDeck());
+        }
+    }
+    public void turn(){
+        if(isMyTurn()) {
+            //choose the card (double click?) and set in Player:chosenCard
+            //send a message with chosen action
+            //wait for response if necessary
+            //end turn, increase roundcounter
+
+        }
+    }
+
 }

@@ -11,6 +11,7 @@ public class Player {
     private int points;
     private String uniqName;
     private int inQueue;
+    private int chosenCard;
 
     public Player(String uniqName){
         this.uniqName = uniqName;
@@ -49,5 +50,22 @@ public class Player {
 
     public void setInQueue(int inQueue) {
         this.inQueue = inQueue;
+    }
+
+    public void withdraw(Deck deck){
+        if(cards[0] == null){
+            cards[0] = deck.get_card();
+        }
+        else if(cards[1] == null){
+            cards[1] = deck.get_card();
+        }
+    }
+
+    public int getChosenCard() {
+        return chosenCard;
+    }
+
+    public void setChosenCard(int chosenCard) {
+        this.chosenCard = chosenCard;
     }
 }

@@ -74,20 +74,13 @@ public class GameBoard implements Screen {
             }
         }
 
-        if(game.gameController.isMyTurn()){
-            System.out.println("KK; IT IS IN");
-            game.gameController.initTurn();
-            Card userCard = game.gameController.getGameModel().getLocalPlayer().getCards()[0];
-            game.batch.draw(new Texture(userCard.getCardImage(userCard.getType())), (float)(Gdx.graphics.getWidth()*0.15), (float)(Gdx.graphics.getHeight()*0.05), (float)(Gdx.graphics.getWidth()*0.3), (float)(Gdx.graphics.getHeight()*0.4));
-        }
 
+        game.gameController.initTurn();
+        //Card userCard = game.gameController.getGameModel().getLocalPlayer().getCards()[0];
+        //game.batch.draw(new Texture(userCard.getCardImage(userCard.getType())), (float)(Gdx.graphics.getWidth()*0.15), (float)(Gdx.graphics.getHeight()*0.05), (float)(Gdx.graphics.getWidth()*0.3), (float)(Gdx.graphics.getHeight()*0.3));
+        drawCards();
 
         game.batch.end();
-
-        //update game model
-        //draw background
-        //draw table
-        //draw players
 
     }
 
@@ -113,6 +106,15 @@ public class GameBoard implements Screen {
 
     @Override
     public void dispose() {
+
+    }
+
+    public void drawCards(){
+        Card userCard = game.gameController.getGameModel().getLocalPlayer().getCards()[0];
+        Card userCard2 = game.gameController.getGameModel().getLocalPlayer().getCards()[1];
+        game.batch.draw(new Texture(userCard.getCardImage(userCard.getType())), (float)(Gdx.graphics.getWidth()*0.15), (float)(Gdx.graphics.getHeight()*0.05), (float)(Gdx.graphics.getWidth()*0.3), (float)(Gdx.graphics.getHeight()*0.3));
+        if(!(userCard2 == null))
+            game.batch.draw(new Texture(userCard2.getCardImage(userCard.getType())), (float)(Gdx.graphics.getWidth()*0.35), (float)(Gdx.graphics.getHeight()*0.05), (float)(Gdx.graphics.getWidth()*0.3), (float)(Gdx.graphics.getHeight()*0.3));
 
     }
 
