@@ -16,6 +16,7 @@ public class Card implements Screen {
     OrthographicCamera camera;
 
     Texture img;
+    Texture cardTexture;
 
     @Override
     public void show() {
@@ -32,6 +33,7 @@ public class Card implements Screen {
 
         game.batch.begin();
         game.batch.draw(img, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        game.batch.draw(cardTexture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         game.batch.end();
     }
 
@@ -67,6 +69,7 @@ public class Card implements Screen {
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
-        img = cardTexture;
+        img = new Texture("background_and_logo.png");
+        this.cardTexture = cardTexture;
     }
 }
