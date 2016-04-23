@@ -151,7 +151,7 @@ public class GameController implements WarpListener {
         }
     }
 
-    public void initTurn(){
+    public Boolean initTurn(){
         if(!GameModel.getLocalPlayer().getInitState()) {
             if((12-GameModel.getLocalPlayer().getInQueue()+1) == GameModel.getTable().getDeck().getDeckSize()) {
                 Card deckCard = this.GameModel.getDeckCard();
@@ -160,8 +160,11 @@ public class GameController implements WarpListener {
                 System.out.println("initTurn: data = " + data);
                 WarpController.getInstance().sendGameUpdate(data);
                 this.GameModel.getLocalPlayer().setCard(deckCard);
+                return false;
             }
         }
+
+        return true;
     }
     public void turn(){
         if(isMyTurn()) {
