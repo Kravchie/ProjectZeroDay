@@ -151,13 +151,14 @@ public class GameController implements WarpListener {
     }
 
     public void initTurn(){
-        if(isMyTurn() && !GameModel.getLocalPlayer().getInitState()) {
+        if(!GameModel.getLocalPlayer().getInitState()) {
             Card deckCard = this.GameModel.getDeckCard();
             Move move = new Move(GameModel.getLocalPlayer().getUniqName(), deckCard.getType(), "W");
             String data = gson.toJson(move);
             System.out.println("initTurn: data = " + data);
             WarpController.getInstance().sendGameUpdate(data);
             this.GameModel.getLocalPlayer().setCard(deckCard);
+            System.out.println("KK: Player = " + GameModel.getLocalPlayer().getInQueue() + " length of deck = " + GameModel.getTable().getDeck().getDeckSize());
         }
     }
     public void turn(){

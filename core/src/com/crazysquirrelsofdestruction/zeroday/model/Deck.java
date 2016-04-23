@@ -15,6 +15,10 @@ public class Deck {
         initDeck();
     }
 
+    public int getDeckSize(){
+        return deckList.size();
+    }
+
     public void initDeck() {
         /* Start:
             1 x Big Fish card

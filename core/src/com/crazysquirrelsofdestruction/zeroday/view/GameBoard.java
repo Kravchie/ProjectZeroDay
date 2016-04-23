@@ -29,6 +29,7 @@ public class GameBoard implements Screen {
     CardButton cardButton1;
     CardButton cardButton2;
     private int card_displayed;
+    private Boolean initState;
 
 
     public GameBoard(final ZeroDayGame game, final GameController controller) { //DELETED FINAL for GameController
@@ -52,6 +53,8 @@ public class GameBoard implements Screen {
             Card sampleCard = new Card(i);
             texturesCards[i] = new Texture(sampleCard.getCardImage(i));
         }
+
+        initState = true;
     }
 
     @Override
@@ -69,7 +72,7 @@ public class GameBoard implements Screen {
 
         game.batch.begin();
         game.batch.draw(img, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        game.batch.draw(table, (float)(Gdx.graphics.getWidth()*0.30), (float)(Gdx.graphics.getHeight()*0.35), (float)(Gdx.graphics.getWidth()*0.4), Gdx.graphics.getHeight()/3);
+        game.batch.draw(table, (float) (Gdx.graphics.getWidth() * 0.30), (float) (Gdx.graphics.getHeight() * 0.35), (float) (Gdx.graphics.getWidth() * 0.4), Gdx.graphics.getHeight() / 3);
         for(int i=0; i < controller.getGameModel().getPlayers().size()-1; i++ ){
             switch (i) {
                 case 0:
@@ -84,8 +87,11 @@ public class GameBoard implements Screen {
             }
         }
 
-
-        game.gameController.initTurn();
+        if(initState) {
+            game.gameController.initTurn();
+            initState = false;
+            game.gameController.getGameModel().getTable().setRoundCounter(game.gameController.getGameModel().getLocalPlayer().getInQueue()+1);
+        }
         drawCards();
 
         game.batch.end();
@@ -118,7 +124,6 @@ public class GameBoard implements Screen {
     }
 
     public void drawCards(){
-        if(game.gameController.isMyTurn()) {
             Card userCard = game.gameController.getGameModel().getLocalPlayer().getCards()[0];
             Card userCard2 = game.gameController.getGameModel().getLocalPlayer().getCards()[1];
             int typ1 = game.gameController.getGameModel().getLocalPlayer().getCards()[0].getType();
@@ -135,7 +140,7 @@ public class GameBoard implements Screen {
                 }
                     cardButton2.update(game.batch, this.game);
          }
-            }
+
 
     }
 }
