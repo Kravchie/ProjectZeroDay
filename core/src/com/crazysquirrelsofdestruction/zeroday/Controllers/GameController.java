@@ -137,7 +137,7 @@ public class GameController implements WarpListener {
     }
 
     public void initTurn(){
-        if(isMyTurn()) {
+        if(isMyTurn() && !GameModel.getLocalPlayer().getInitState()) {
             this.GameModel.getLocalPlayer().withdraw(this.GameModel.getTable().getDeck());
         }
     }

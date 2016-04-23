@@ -12,12 +12,14 @@ public class Player {
     private String uniqName;
     private int inQueue;
     private int chosenCard;
+    private Boolean initState;
 
     public Player(String uniqName){
         this.uniqName = uniqName;
         this.inQueue = inQueue;
         cards = new Card[2];
         points = 0;
+        initState = false;
     }
 
     public int getPoints(){
@@ -59,6 +61,7 @@ public class Player {
         else if(cards[1] == null){
             cards[1] = deck.get_card();
         }
+        initState = true;
     }
 
     public int getChosenCard() {
@@ -67,5 +70,13 @@ public class Player {
 
     public void setChosenCard(int chosenCard) {
         this.chosenCard = chosenCard;
+    }
+
+    public Boolean getInitState() {
+        return initState;
+    }
+
+    public void setInitState(Boolean initState) {
+        this.initState = initState;
     }
 }

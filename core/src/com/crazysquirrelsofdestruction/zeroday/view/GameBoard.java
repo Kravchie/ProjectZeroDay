@@ -76,8 +76,6 @@ public class GameBoard implements Screen {
 
 
         game.gameController.initTurn();
-        //Card userCard = game.gameController.getGameModel().getLocalPlayer().getCards()[0];
-        //game.batch.draw(new Texture(userCard.getCardImage(userCard.getType())), (float)(Gdx.graphics.getWidth()*0.15), (float)(Gdx.graphics.getHeight()*0.05), (float)(Gdx.graphics.getWidth()*0.3), (float)(Gdx.graphics.getHeight()*0.3));
         drawCards();
 
         game.batch.end();
@@ -111,11 +109,12 @@ public class GameBoard implements Screen {
 
     public void drawCards(){
         if(game.gameController.isMyTurn()) {
+            System.out.println("KK: IN drawCards FUNCTION");
             Card userCard = game.gameController.getGameModel().getLocalPlayer().getCards()[0];
             Card userCard2 = game.gameController.getGameModel().getLocalPlayer().getCards()[1];
-            game.batch.draw(new Texture(userCard.getCardImage(userCard.getType())), (float) (Gdx.graphics.getWidth() * 0.15), (float) (Gdx.graphics.getHeight() * 0.05), (float) (Gdx.graphics.getWidth() * 0.3), (float) (Gdx.graphics.getHeight() * 0.3));
+            game.batch.draw(new Texture(userCard.getCardImage(userCard.getType())), (float) (Gdx.graphics.getWidth() * 0.15), (float) (Gdx.graphics.getHeight() * 0.01), (float) (Gdx.graphics.getWidth() * 0.4), (float) (Gdx.graphics.getHeight() * 0.4));
             if (!(userCard2 == null))
-                game.batch.draw(new Texture(userCard2.getCardImage(userCard.getType())), (float) (Gdx.graphics.getWidth() * 0.35), (float) (Gdx.graphics.getHeight() * 0.05), (float) (Gdx.graphics.getWidth() * 0.3), (float) (Gdx.graphics.getHeight() * 0.3));
+                game.batch.draw(new Texture(userCard2.getCardImage(userCard2.getType())), (float) (Gdx.graphics.getWidth() * 0.55), (float) (Gdx.graphics.getHeight() * 0.01), (float) (Gdx.graphics.getWidth() * 0.4), (float) (Gdx.graphics.getHeight() * 0.4));
         }
 
     }
