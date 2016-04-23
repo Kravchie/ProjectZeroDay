@@ -88,7 +88,7 @@ public class GameBoard implements Screen {
             }
         }
 
-        if(game.gameController.getGameModel().getLocalPlayer().getCards()[0].equals(null)) {
+        if(game.gameController.getGameModel().getLocalPlayer().getCards()[0] == null) {
             /*Boolean init = */game.gameController.initTurn();
             //initState = init;
             if(game.gameController.getGameModel().getLocalPlayer().getInQueue()+1 == 4){
