@@ -55,6 +55,7 @@ public class GameBoard implements Screen {
         }
 
         initState = true;
+
     }
 
     @Override

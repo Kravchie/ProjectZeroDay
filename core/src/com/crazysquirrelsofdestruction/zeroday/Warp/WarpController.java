@@ -220,6 +220,7 @@ public class WarpController {
     }
 
     public void onGameUpdateReceived(String message){
+        System.out.println("KK in WC: onGameUpdateReceived");
 //		log("onMoveUpdateReceived: message"+ message );
         String userName = message.substring(0, message.indexOf("#@"));
         String data = message.substring(message.indexOf("#@")+2, message.length());

@@ -95,9 +95,10 @@ public class GameController implements WarpListener {
     @Override
     public void onGameUpdateReceived(String message) {
         Move move = gson.fromJson(message, Move.class);
-        if (move.getAction() == "W") {
+        System.out.println("KK in GC: onGameUpdateReceived, ACTION=" + move.getAction());
+        if (move.getAction().equals("W")) {
             Card deckCard = new Card(move.getCardType());
-            System.out.println("onGameUpdateReceived: deckCardType = " + String.valueOf(deckCard.getType()));
+            System.out.println("KK in GC: onGameUpdateReceived: deckCardType = " + String.valueOf(deckCard.getType()));
             this.GameModel.getTable().getDeck().remove_card(deckCard);
         }
     }
@@ -152,13 +153,15 @@ public class GameController implements WarpListener {
 
     public void initTurn(){
         if(!GameModel.getLocalPlayer().getInitState()) {
-            Card deckCard = this.GameModel.getDeckCard();
-            Move move = new Move(GameModel.getLocalPlayer().getUniqName(), deckCard.getType(), "W");
-            String data = gson.toJson(move);
-            System.out.println("initTurn: data = " + data);
-            WarpController.getInstance().sendGameUpdate(data);
-            this.GameModel.getLocalPlayer().setCard(deckCard);
-             }
+            if((12-GameModel.getLocalPlayer().getInQueue()+1) == GameModel.getTable().getDeck().getDeckSize()) {
+                Card deckCard = this.GameModel.getDeckCard();
+                Move move = new Move(GameModel.getLocalPlayer().getUniqName(), deckCard.getType(), "W");
+                String data = gson.toJson(move);
+                System.out.println("initTurn: data = " + data);
+                WarpController.getInstance().sendGameUpdate(data);
+                this.GameModel.getLocalPlayer().setCard(deckCard);
+            }
+        }
     }
     public void turn(){
         if(isMyTurn()) {
