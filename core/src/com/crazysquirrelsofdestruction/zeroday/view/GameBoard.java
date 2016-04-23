@@ -29,7 +29,7 @@ public class GameBoard implements Screen {
     CardButton cardButton1;
     CardButton cardButton2;
     private int card_displayed;
-    private Boolean initState;
+    //private Boolean initState;
 
 
     public GameBoard(final ZeroDayGame game, final GameController controller) { //DELETED FINAL for GameController
@@ -54,7 +54,7 @@ public class GameBoard implements Screen {
             texturesCards[i] = new Texture(sampleCard.getCardImage(i));
         }
 
-        initState = true;
+        //initState = true;
 
     }
 
@@ -88,9 +88,9 @@ public class GameBoard implements Screen {
             }
         }
 
-        if(initState) {
-            Boolean init = game.gameController.initTurn();
-            initState = init;
+        if(game.gameController.getGameModel().getLocalPlayer().getCards()[0].equals(null)) {
+            /*Boolean init = */game.gameController.initTurn();
+            //initState = init;
             if(game.gameController.getGameModel().getLocalPlayer().getInQueue()+1 == 4){
                 game.gameController.getGameModel().getTable().setRoundCounter(1);
             }else{
