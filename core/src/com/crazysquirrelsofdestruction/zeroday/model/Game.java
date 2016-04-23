@@ -39,4 +39,8 @@ public class Game {
     public Table getTable() {
         return table;
     }
+
+    public Card getDeckCard() {
+        return table.getDeckCard();
+    }
 }

@@ -7,6 +7,25 @@ package com.crazysquirrelsofdestruction.zeroday.model;
 public class Move {
 
     /* Move attributes */
-    public int cardType;
-    public String action;
+    private int cardType;
+    private String senderId;
+    private String action;
+
+    public Move(String senderId, int cardType, String action) {
+        this.senderId = senderId;
+        this.cardType = cardType;
+        this.action = action;
+    }
+
+    public int getCardType() {
+        return cardType;
+    }
+
+    public String getAction() {
+        return action;
+    }
+
+    public String getSenderId() {
+        return senderId;
+    }
 }

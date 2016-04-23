@@ -23,7 +23,7 @@ public class RoomListener implements RoomRequestListener{
 
         }else{
             callBack.onGetLiveRoomInfo(null);
-            System.out.print("\nNDNNo Update  "+event.getResult());
+            System.out.println("NDNNo Update  " + event.getResult());
         }
     }
 

@@ -42,7 +42,7 @@ public class WaitingRoom implements Screen {
         font.getData().setScale(4);
 
         img = new Texture("background_and_logo.png");
-        System.out.print("\nNDN_Have Entered the waiting View");
+        System.out.println("NDN_Have Entered the waiting View");
         //WarpController.getInstance().setListener(this);
     }
 

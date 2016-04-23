@@ -9,8 +9,6 @@ import com.crazysquirrelsofdestruction.zeroday.Controllers.GameController;
 import com.crazysquirrelsofdestruction.zeroday.ZeroDayGame;
 import com.crazysquirrelsofdestruction.zeroday.model.Card;
 
-import java.util.ArrayList;
-
 
 /**
  * Created by Klaudia on 2016-04-18.
@@ -33,7 +31,7 @@ public class GameBoard implements Screen {
 
         this.game = game;
         this.controller = controller;
-        System.out.print("\nNDN_IN GAME BOARD");
+        System.out.println("NDN_IN GAME BOARD");
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 

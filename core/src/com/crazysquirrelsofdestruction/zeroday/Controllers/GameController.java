@@ -1,16 +1,19 @@
 package com.crazysquirrelsofdestruction.zeroday.Controllers;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
 import com.crazysquirrelsofdestruction.zeroday.Warp.WarpController;
 import com.crazysquirrelsofdestruction.zeroday.Warp.WarpListener;
 import com.crazysquirrelsofdestruction.zeroday.ZeroDayGame;
+import com.crazysquirrelsofdestruction.zeroday.model.Card;
 import com.crazysquirrelsofdestruction.zeroday.model.Game;
+import com.crazysquirrelsofdestruction.zeroday.model.Move;
 import com.crazysquirrelsofdestruction.zeroday.model.Player;
 import com.crazysquirrelsofdestruction.zeroday.view.GameBoard;
 import com.crazysquirrelsofdestruction.zeroday.view.WaitingRoom;
+import com.google.gson.Gson;
 
 import java.util.Random;
+
 
 /**
  * Created by Klaudia on 2016-04-18.
@@ -31,18 +34,24 @@ public class GameController implements WarpListener {
     private final String   enemy_left = "Congrats You Win! Enemy Left the Game";
     private String msg = tryingToConnect;
     final ZeroDayGame game;
-    private Screen waitingRoom;
+    private Gson gson;
+
 
     public GameController(final ZeroDayGame game) {
         this.game = game;
         GameModel = new Game();
         this.onTotalPlayers();
+        gson = new Gson();
+    }
+
+    private void init_game() {
+
     }
 
     public void onGameStarted (String message) {
-        state=GAME_RUNNING;
-        waitingRoom = game.getScreen();
-        System.out.print("\nNDN_Going To Board Game View");
+        state = GAME_RUNNING;
+        init_game();
+        System.out.println("NDN_Going To Board Game View");
         Gdx.app.postRunnable(new Runnable() {
             @Override
             public void run() {
@@ -85,13 +94,18 @@ public class GameController implements WarpListener {
 
     @Override
     public void onGameUpdateReceived(String message) {
-
+        Move move = gson.fromJson(message, Move.class);
+        if (move.getAction() == "W") {
+            Card deckCard = new Card(move.getCardType());
+            System.out.println("onGameUpdateReceived: deckCardType = " + String.valueOf(deckCard.getType()));
+            this.GameModel.getTable().getDeck().remove_card(deckCard);
+        }
     }
 
     public void onWaitingStarted(String message) {
         this.msg = waitForOtherUser;
-        state=GAME_READY;
-        System.out.print("\nNDN_Going Waiting View");
+        state = GAME_READY;
+        System.out.println("NDN_Going Waiting View");
         Gdx.app.postRunnable(new Runnable() {
             @Override
             public void run() {
@@ -138,7 +152,12 @@ public class GameController implements WarpListener {
 
     public void initTurn(){
         if(isMyTurn() && !GameModel.getLocalPlayer().getInitState()) {
-            this.GameModel.getLocalPlayer().withdraw(this.GameModel.getTable().getDeck());
+            Card deckCard = this.GameModel.getDeckCard();
+            Move move = new Move(GameModel.getLocalPlayer().getUniqName(), deckCard.getType(), "W");
+            String data = gson.toJson(move);
+            System.out.println("initTurn: data = " + data);
+            WarpController.getInstance().sendGameUpdate(data);
+            this.GameModel.getLocalPlayer().setCard(deckCard);
         }
     }
     public void turn(){

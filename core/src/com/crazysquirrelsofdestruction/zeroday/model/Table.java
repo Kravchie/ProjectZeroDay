@@ -46,4 +46,8 @@ public class Table  {
     public void deleteOrderedPlayer(String uniqName) {
         this.orderedPlayers.remove(uniqName);
     }
+
+    public Card getDeckCard() {
+        return deck.get_card();
+    }
 }

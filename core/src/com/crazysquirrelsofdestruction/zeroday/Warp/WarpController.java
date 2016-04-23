@@ -3,12 +3,12 @@ package com.crazysquirrelsofdestruction.zeroday.Warp;
 /**
  * Created by Nadin on 4/15/2016.
  */
-import java.util.Arrays;
-import java.util.HashMap;
-
 import com.shephertz.app42.gaming.multiplayer.client.WarpClient;
 import com.shephertz.app42.gaming.multiplayer.client.command.WarpResponseResultCode;
 import com.shephertz.app42.gaming.multiplayer.client.events.RoomEvent;
+
+import java.util.Arrays;
+import java.util.HashMap;
 
 
 
@@ -231,7 +231,7 @@ public class WarpController {
     public void onResultUpdateReceived(String userName, int code){
         if(localUser.equals(userName)==false){
             STATE = FINISHED;
-            System.out.print("\nNDNGameOver");
+            System.out.println("NDNGameOver");
             warpListener.onGameFinished(code, true);
         }else{
             warpListener.onGameFinished(code, false);
@@ -259,7 +259,7 @@ public class WarpController {
 
     private void startGame(){
         STATE = STARTED;
-        System.out.print("\nNDNEnoughPLayers");
+        System.out.println("NDNEnoughPLayers");
         warpListener.onGameStarted("Start the Game");
 
 
@@ -267,7 +267,7 @@ public class WarpController {
 
     private void waitForOtherUser(){
         STATE = WAITING;
-        System.out.print("\nNDNWaiting for Player");
+        System.out.println("NDNWaiting for Player");
         warpListener.onWaitingStarted("Waiting for other user");
     }
 

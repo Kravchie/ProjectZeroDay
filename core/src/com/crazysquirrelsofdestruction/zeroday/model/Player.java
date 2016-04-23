@@ -1,7 +1,5 @@
 package com.crazysquirrelsofdestruction.zeroday.model;
 
-import java.util.HashMap;
-
 /**
  * Created by Klaudia on 2016-04-12.
  */
@@ -54,12 +52,12 @@ public class Player {
         this.inQueue = inQueue;
     }
 
-    public void withdraw(Deck deck){
+    public void setCard(Card card) {
         if(cards[0] == null){
-            cards[0] = deck.get_card();
+            cards[0] = card;
         }
         else if(cards[1] == null){
-            cards[1] = deck.get_card();
+            cards[1] = card;
         }
         initState = true;
     }
