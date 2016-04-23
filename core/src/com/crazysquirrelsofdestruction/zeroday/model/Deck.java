@@ -55,7 +55,7 @@ public class Deck {
     }
 
     public void remove_card(Card card) {
-        deckList.remove(card);
+        deckList.remove(card.getType());
     }
 
     public boolean is_empty() {
