@@ -9,6 +9,7 @@ import com.crazysquirrelsofdestruction.zeroday.Controllers.GameController;
 import com.crazysquirrelsofdestruction.zeroday.ZeroDayGame;
 import com.crazysquirrelsofdestruction.zeroday.model.Card;
 import com.crazysquirrelsofdestruction.zeroday.view.components.CardButton;
+import com.crazysquirrelsofdestruction.zeroday.view.components.PlayerButton;
 
 
 /**
@@ -28,6 +29,8 @@ public class GameBoard implements Screen {
     Texture[] texturesCards;
     CardButton cardButton1;
     CardButton cardButton2;
+    PlayerButton[] playersButtons;
+
     private int card_displayed;
     //private Boolean initState;
 
@@ -46,7 +49,6 @@ public class GameBoard implements Screen {
         for(int i=0; i < controller.getGameModel().getPlayers().size()-1; i++ ){
             texturesPlayers[i] = new Texture("player" + (i+1) + ".png");
         }
-
         texturesCards = new Texture[5];
 
         for(int i=0; i < 5; i++){
@@ -77,13 +79,19 @@ public class GameBoard implements Screen {
         for(int i=0; i < controller.getGameModel().getPlayers().size()-1; i++ ){
             switch (i) {
                 case 0:
-                    game.batch.draw(texturesPlayers[i], (float)(Gdx.graphics.getWidth()*0.35), (float)(Gdx.graphics.getHeight()*0.70), (float)(Gdx.graphics.getWidth()*0.3), (float)(Gdx.graphics.getHeight()*0.2));
+                    //game.batch.draw(texturesPlayers[i], (float)(Gdx.graphics.getWidth()*0.35), (float)(Gdx.graphics.getHeight()*0.70), (float)(Gdx.graphics.getWidth()*0.3), (float)(Gdx.graphics.getHeight()*0.2));
+                    playersButtons[0]= new PlayerButton(texturesPlayers[0], (float)(Gdx.graphics.getWidth()*0.35), (float)(Gdx.graphics.getHeight()*0.70), (float)(Gdx.graphics.getWidth()*0.3), (float)(Gdx.graphics.getHeight()*0.2),0);
+                    playersButtons[0].update(game.batch, this.game);
                     break;
                 case 1:
-                    game.batch.draw(texturesPlayers[i], (float)(Gdx.graphics.getWidth()*0.05), (float)(Gdx.graphics.getHeight()*0.35), (float)(Gdx.graphics.getWidth()*0.3), (float)(Gdx.graphics.getHeight()*0.2));
+                    //game.batch.draw(texturesPlayers[i], (float)(Gdx.graphics.getWidth()*0.05), (float)(Gdx.graphics.getHeight()*0.35), (float)(Gdx.graphics.getWidth()*0.3), (float)(Gdx.graphics.getHeight()*0.2));
+                    playersButtons[1]= new PlayerButton(texturesPlayers[1], (float)(Gdx.graphics.getWidth()*0.05), (float)(Gdx.graphics.getHeight()*0.35), (float)(Gdx.graphics.getWidth()*0.3), (float)(Gdx.graphics.getHeight()*0.2),1);
+                    playersButtons[1].update(game.batch, this.game);
                     break;
                 case 2:
-                    game.batch.draw(texturesPlayers[i], (float)(Gdx.graphics.getWidth()*0.65), (float)(Gdx.graphics.getHeight()*0.35), (float)(Gdx.graphics.getWidth()*0.3), (float)(Gdx.graphics.getHeight()*0.2));
+                    //game.batch.draw(texturesPlayers[i], (float)(Gdx.graphics.getWidth()*0.65), (float)(Gdx.graphics.getHeight()*0.35), (float)(Gdx.graphics.getWidth()*0.3), (float)(Gdx.graphics.getHeight()*0.2));
+                    playersButtons[2]= new PlayerButton(texturesPlayers[2], (float)(Gdx.graphics.getWidth()*0.65), (float)(Gdx.graphics.getHeight()*0.35), (float)(Gdx.graphics.getWidth()*0.3), (float)(Gdx.graphics.getHeight()*0.2),2);
+                    playersButtons[2].update(game.batch, this.game);
                     break;
             }
         }

@@ -110,7 +110,6 @@ public class GameController implements WarpListener {
     public void onWaitingStarted(String message) {
         this.msg = waitForOtherUser;
         state = GAME_READY;
-        System.out.println("NDN_Going Waiting View");
         Gdx.app.postRunnable(new Runnable() {
             @Override
             public void run() {
