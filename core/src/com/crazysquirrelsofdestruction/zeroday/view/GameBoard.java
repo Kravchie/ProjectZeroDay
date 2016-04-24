@@ -42,7 +42,7 @@ public class GameBoard implements Screen {
         System.out.println("NDN_IN GAME BOARD");
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-
+        playersButtons = new PlayerButton[3];
         img = new Texture("background_and_logo.png");
         table = new Texture("table.png");
         texturesPlayers = new Texture[controller.getGameModel().getPlayers().size()];
