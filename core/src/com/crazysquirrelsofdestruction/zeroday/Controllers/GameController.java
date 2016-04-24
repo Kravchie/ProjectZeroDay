@@ -161,7 +161,7 @@ public class GameController implements WarpListener {
         }
     }
     public void turn(){
-        if(isMyTurn()) {
+        if(isMyTurn() && (12-GameModel.getLocalPlayer().getInQueue()+1) == GameModel.getTable().getDeck().getDeckSize()) {
             addCard();
             updateRoundCounter();
 
