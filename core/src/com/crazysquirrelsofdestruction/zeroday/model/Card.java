@@ -12,9 +12,15 @@ public class Card {
     public static final int TYPE_SKIDDIE = 4;
 
     private int type;
+    private int id;
 
-    public Card(int type) {
+    public int getId() {
+        return id;
+    }
+
+    public Card(int type, int id) {
         this.type = type;
+        this.id = id;
     }
 
     public int getType() {

@@ -28,22 +28,22 @@ public class Deck {
             4 x Skiddie card
          */
         deckList.clear();
-        deckList.add(new Card(Card.TYPE_BIGFISH));
+        deckList.add(new Card(Card.TYPE_BIGFISH,0));
 
-        deckList.add(new Card(Card.TYPE_WHITEHAT));
-        deckList.add(new Card(Card.TYPE_WHITEHAT));
+        deckList.add(new Card(Card.TYPE_WHITEHAT,1));
+        deckList.add(new Card(Card.TYPE_WHITEHAT,2));
 
-        deckList.add(new Card(Card.TYPE_BLACKHAT));
-        deckList.add(new Card(Card.TYPE_BLACKHAT));
+        deckList.add(new Card(Card.TYPE_BLACKHAT,3));
+        deckList.add(new Card(Card.TYPE_BLACKHAT,4));
 
-        deckList.add(new Card(Card.TYPE_CRACKER));
-        deckList.add(new Card(Card.TYPE_CRACKER));
-        deckList.add(new Card(Card.TYPE_CRACKER));
+        deckList.add(new Card(Card.TYPE_CRACKER,5));
+        deckList.add(new Card(Card.TYPE_CRACKER,6));
+        deckList.add(new Card(Card.TYPE_CRACKER,7));
 
-        deckList.add(new Card(Card.TYPE_SKIDDIE));
-        deckList.add(new Card(Card.TYPE_SKIDDIE));
-        deckList.add(new Card(Card.TYPE_SKIDDIE));
-        deckList.add(new Card(Card.TYPE_SKIDDIE));
+        deckList.add(new Card(Card.TYPE_SKIDDIE,8));
+        deckList.add(new Card(Card.TYPE_SKIDDIE,9));
+        deckList.add(new Card(Card.TYPE_SKIDDIE,10));
+        deckList.add(new Card(Card.TYPE_SKIDDIE,11));
     }
 
     public Card get_card() {
@@ -54,9 +54,9 @@ public class Deck {
         return retCard;
     }
 
-    public void remove_card(Card card) {
+    public void remove_card(int id) {
         for(int i=0;i < deckList.size();i++) {
-            if (card.getType() == deckList.get(i).getType()) {
+            if (id == deckList.get(i).getId()) {
                 deckList.remove(i);
             }
         }

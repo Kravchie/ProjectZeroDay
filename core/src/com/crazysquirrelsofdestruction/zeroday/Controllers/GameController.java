@@ -97,9 +97,8 @@ public class GameController implements WarpListener {
         Move move = gson.fromJson(message, Move.class);
         System.out.println("KK in GC: onGameUpdateReceived, ACTION=" + move.getAction());
         if (move.getAction().equals("W")) {
-            Card deckCard = new Card(move.getValue());
-            System.out.println("KK in GC: onGameUpdateReceived: deckCardType = " + String.valueOf(deckCard.getType()));
-            this.GameModel.getTable().getDeck().remove_card(deckCard);
+            System.out.println("KK in GC: onGameUpdateReceived: deckCardType = " + String.valueOf(move.getValue()));
+            this.GameModel.getTable().getDeck().remove_card(move.getValue());
         }
         if (move.getAction().equals("R")) {
             this.GameModel.getTable().setRoundCounter(move.getValue());
@@ -165,6 +164,7 @@ public class GameController implements WarpListener {
         if(isMyTurn()) {
             addCard();
             updateRoundCounter();
+
             //choose the card (double click?) and set in Player:chosenCard
             //send a message with chosen action
             //wait for response if necessary
@@ -175,7 +175,7 @@ public class GameController implements WarpListener {
 
     public void addCard() {
         Card deckCard = this.GameModel.getDeckCard();
-        Move move = new Move(GameModel.getLocalPlayer().getUniqName(), deckCard.getType(), "W");
+        Move move = new Move(GameModel.getLocalPlayer().getUniqName(), deckCard.getId(), "W");
         String data = gson.toJson(move);
         System.out.println("initTurn: data = " + data);
         WarpController.getInstance().sendGameUpdate(data);
