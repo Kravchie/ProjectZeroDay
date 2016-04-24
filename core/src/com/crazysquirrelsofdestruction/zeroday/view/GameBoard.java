@@ -52,7 +52,7 @@ public class GameBoard implements Screen {
         texturesCards = new Texture[5];
 
         for(int i=0; i < 5; i++){
-            Card sampleCard = new Card(i);
+            Card sampleCard = new Card(i,i);
             texturesCards[i] = new Texture(sampleCard.getCardImage(i));
         }
 
