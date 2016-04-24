@@ -89,18 +89,12 @@ public class GameBoard implements Screen {
         }
 
         if(game.gameController.getGameModel().getLocalPlayer().getCards()[0] == null) {
-            /*Boolean init = */game.gameController.initTurn();
-            //initState = init;
-            if(game.gameController.getGameModel().getLocalPlayer().getInQueue()+1 == 4){
-                game.gameController.getGameModel().getTable().setRoundCounter(1);
-            }else{
-                game.gameController.getGameModel().getTable().setRoundCounter(game.gameController.getGameModel().getLocalPlayer().getInQueue()+1);
-            }
+            game.gameController.initTurn();
             System.out.println("KK: Player = " + game.gameController.getGameModel().getLocalPlayer().getInQueue() + " length of deck = " + game.gameController.getGameModel().getTable().getDeck().getDeckSize());
         } else {
+            game.gameController.turn();
             drawCards();
         }
-
         game.batch.end();
 
     }
@@ -142,7 +136,7 @@ public class GameBoard implements Screen {
             if (!(userCard2 == null)) {
                 int typ2 = game.gameController.getGameModel().getLocalPlayer().getCards()[1].getType();
                 if(card_displayed == 1) {
-                    cardButton2 = new CardButton(game.gameController.getGameModel().getLocalPlayer().getCards()[1].getCardImage(typ2), (float) (Gdx.graphics.getWidth() * 0.01), (float) (Gdx.graphics.getHeight() * 0.01), (float) (Gdx.graphics.getWidth() * 0.4), (float) (Gdx.graphics.getHeight() * 0.4));
+                    cardButton2 = new CardButton(game.gameController.getGameModel().getLocalPlayer().getCards()[1].getCardImage(typ2), (float) (Gdx.graphics.getWidth() * 0.55), (float) (Gdx.graphics.getHeight() * 0.01), (float) (Gdx.graphics.getWidth() * 0.4), (float) (Gdx.graphics.getHeight() * 0.4));
                     card_displayed = 2;
                 }
                     cardButton2.update(game.batch, this.game);

@@ -55,7 +55,11 @@ public class Deck {
     }
 
     public void remove_card(Card card) {
-        deckList.remove(card.getType());
+        for(int i=0;i < deckList.size();i++) {
+            if (card.getType() == deckList.get(i).getType()) {
+                deckList.remove(i);
+            }
+        }
     }
 
     public boolean is_empty() {

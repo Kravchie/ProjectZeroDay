@@ -97,9 +97,13 @@ public class GameController implements WarpListener {
         Move move = gson.fromJson(message, Move.class);
         System.out.println("KK in GC: onGameUpdateReceived, ACTION=" + move.getAction());
         if (move.getAction().equals("W")) {
-            Card deckCard = new Card(move.getCardType());
+            Card deckCard = new Card(move.getValue());
             System.out.println("KK in GC: onGameUpdateReceived: deckCardType = " + String.valueOf(deckCard.getType()));
             this.GameModel.getTable().getDeck().remove_card(deckCard);
+        }
+        if (move.getAction().equals("R")) {
+            this.GameModel.getTable().setRoundCounter(move.getValue());
+            System.out.println("KK in GC: onGameUpdateReceived: roundCounter = " + String.valueOf(move.getValue()));
         }
     }
 
@@ -110,7 +114,7 @@ public class GameController implements WarpListener {
         Gdx.app.postRunnable(new Runnable() {
             @Override
             public void run() {
-                game.setScreen(new WaitingRoom(game,GameController.this));
+                game.setScreen(new WaitingRoom(game, GameController.this));
             }
         });
 
@@ -151,29 +155,44 @@ public class GameController implements WarpListener {
         }
     }
 
-    public Boolean initTurn(){
+    public void initTurn(){
         if(!GameModel.getLocalPlayer().getInitState()) {
             if((12-GameModel.getLocalPlayer().getInQueue()+1) == GameModel.getTable().getDeck().getDeckSize()) {
-                Card deckCard = this.GameModel.getDeckCard();
-                Move move = new Move(GameModel.getLocalPlayer().getUniqName(), deckCard.getType(), "W");
-                String data = gson.toJson(move);
-                System.out.println("initTurn: data = " + data);
-                WarpController.getInstance().sendGameUpdate(data);
-                this.GameModel.getLocalPlayer().setCard(deckCard);
-                return false;
+                addCard();
             }
         }
-
-        return true;
     }
     public void turn(){
         if(isMyTurn()) {
+            addCard();
+            updateRoundCounter();
             //choose the card (double click?) and set in Player:chosenCard
             //send a message with chosen action
             //wait for response if necessary
             //end turn, increase roundcounter
 
         }
+    }
+
+    public void addCard() {
+        Card deckCard = this.GameModel.getDeckCard();
+        Move move = new Move(GameModel.getLocalPlayer().getUniqName(), deckCard.getType(), "W");
+        String data = gson.toJson(move);
+        System.out.println("initTurn: data = " + data);
+        WarpController.getInstance().sendGameUpdate(data);
+        this.GameModel.getLocalPlayer().setCard(deckCard);
+    }
+
+    public void updateRoundCounter(){
+        if(GameModel.getLocalPlayer().getInQueue()+1 == 5){
+            GameModel.getTable().setRoundCounter(1);
+        }else{
+            GameModel.getTable().setRoundCounter(GameModel.getLocalPlayer().getInQueue()+1);
+        }
+        Move move = new Move(GameModel.getLocalPlayer().getUniqName(), GameModel.getTable().getRoundCounter(), "R");
+        String data = gson.toJson(move);
+        System.out.println("turn: data = " + data);
+        WarpController.getInstance().sendGameUpdate(data);
     }
 
 }
